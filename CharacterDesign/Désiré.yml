@@ -1,0 +1,148 @@
+Name: Ignace? Désiré?
+
+Description: Fencing Character
+
+Character Feel: Insanely mindgames and neutral
+
+Appearance:
+    all normal fencing attire
+
+Lore:
+    
+    
+Intro Quotes:
+    
+
+Win Quotes:
+    
+
+Stage: 
+    
+
+
+Mechanics:
+    Mechanic Overrides:
+        No staling applied
+        Step dash instead of run
+        No grab
+        Holding forward does medium advances
+        Holding Backward does medium retreats
+        No block, must either move or parry
+
+Weakness: Insanely mindgames and neutral but no combos
+
+
+Moves: 
+    All attacks hit high by default, but can be inputted to hit low
+    for forward input attacks use 3 for low
+    for backward input attacks use 1 for low
+
+
+    Grab: None
+
+    # Bladework (parries)
+    Feint
+        Input: 6L
+        Use: fake out
+        Description:
+
+    Parry
+        Input: 623L/M/H
+        Use: leads to riposte if attacked into
+        Description:
+            - A quick defensive action that moves depending on the button pressed
+            - If attacked into, automatically does riposte
+            - Only works on high and mid attacks (attacks that would be blocked by normal blocking)
+            L: Backs up and does {}
+            M: Stays in place and does {}
+            H: Moves in and does {}
+
+    Double (parry)
+        Input: 421L/M/H
+        Use: leads to riposte if attacked into
+        Description:
+            - A slow defensive action that moves depending on the button pressed
+            - If attacked into, automatically does riposte
+            - Works on all attacks
+            L: Backs up and does {}
+            M: Stays in place and does {}
+            H: Moves in and does {}
+    
+    # Attacks
+    Counter Attack
+        Input: 624H
+        Use: go back while attacking
+        Description:
+    
+    Flick
+        Input: 6M
+        Use: Guard break, little damage
+        Description: 
+    
+    Extension
+        Input: L
+        Use: fast poke
+        Description:
+
+    Balestra
+        Input: 426M
+        Use: slower long range attack
+        Description: Jump forwards and automatically lunge
+    
+    Fleche
+        Input: 426H
+        Use: long range attack and crosses up
+        Description: 
+
+    Remise
+        Input: 4M
+        Use: Cancels whiffed attack into another attack
+        Description: 
+            - Cancels end lag of whiffed attack and depending on the attack canceled
+              changes automatic remise attack
+    
+    Reprise
+        Input: 4L
+        Use: Cancels end lag of a whiffed attack and goes back into en-garde
+        Description:
+    
+    Lunge
+        Input: 6H
+        Use: faster long range attack
+        Description:
+
+    # Movement / Footwork
+    Advance
+        Input: 26L/M/H
+        Use: moves forward a predetermined distance depending on attack button pressed
+        Description:
+            L: small advance
+            M: medium advance
+            H: large advance
+    
+    Retreat
+        Input: 24L/M/H
+        Use: moves forward a predetermined distance depending on attack button pressed
+        Description:
+            L: small retreat
+            M: medium retreat
+            H: large retreat
+    
+    Appel
+        Input: 2L
+        Use: Fake out movement
+        Description: A stomp of the foot to pretend like you are going to move
+    
+    Half-Step
+        Input: 2M
+        Use: Fake out movement and can cancel into lunge
+        Description:
+
+        
+    Supers:
+        Super Press: 
+            
+
+        Super Execute:
+            
+https://en.wikipedia.org/wiki/Outline_of_fencing#Tactics_and_techniques
