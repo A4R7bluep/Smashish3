@@ -1,0 +1,46 @@
+GUI:
+    HUD:
+        Health Bars:
+            Health - blue gradient between 1e1e62 and 30309c
+            Damaged - middle gray with 50% opacity
+            Combo - red gradient between 4d1919 and 742525
+
+            Gradients are from darkest on the inside outward to lighter colors
+            Health bars have white borders
+        
+        Character Portraits:
+            A square portrait of the character in anime style
+            Shakes when character takes damage
+        
+        Super Moves:
+            When supers are being performed, a large anime drawing of the character is shown in the (Background / Foreground)
+    
+    Navigation:
+        Buttons are Navy (000080) with white text
+
+Mechanics:
+    Meter:
+        Dropping block at the right time (1 or 2 frames) allows you to parry, gives back a small amount of meter and health
+        Slowdown that can be used for defense or offense, uses 25% meter
+        Super press, does a lot of damage at once, uses 50% meter
+        Super execute, does a lot of damage at once and more when pressed with the right timing, uses 75% meter
+        Attack canceled attacks, uses 25% meter
+
+    Movement:
+        Run with run button or double forward input
+        Back dash as step
+        Air dash
+        Rolls that allow you to cross-up
+
+    Auto turn-around
+
+Buttons:
+    3 buttons, Light, Medium, and Heavy (Abbreviated L, M, H)
+
+    Pressing MH together inputs grab with forward or back for each side of throw
+    Pressing quarter circle left or right and LM inputs roll
+    Pressing LMH inputs Super Press
+    Pressing double quarter circle forward and LMH inputs Super Execute
+    Pressing LH inputs slowdown
+    Pressing quarter circle back or forward after hitting an attack allows you to cancel the attack with a special dash
+    Dash button
