@@ -90,44 +90,36 @@ Moves:
 
     Forward Punch
         Input: 5L
-
         Use: High
 
     Dagger Stab
         Input: 5M
-
         Use: Poke, combo setup
 
     Knife Slash - Low, Mid, High hits
         Description: High anti-airs
-
         Input: 2M, 6M, 4M
-
         Use: 
             Low - Poke, trip
             Mid - Block pressure
             High - Anti-air, combo setup, flying
     
     Sip of Blood
+        Input: 24L
         Description:
             Consumes some blood built up in the dagger
             Increases damage and defense for 3 seconds
 
-        Input: 24L
-
     Crouch Kick - right foot
         Input: 2L
-
         Use: Low
     
     Slash Kick - with left foot (like Happy Chaos 6K)
         Input: 6L
-
         Use: In combo
 
     Bat Dash
         Input: 26L, 26M, 26H
-
         Use: Mix-up, approach
 
         Light: goes the least far, designed to go right in front of opponent - cancelable into other moves
@@ -136,30 +128,25 @@ Moves:
 
     Bat Swarm - Pulls back his jacket and bats swarm out (similar to Zato 5H)
         Input: 4H
-
         Use: Spacing
 
     Demonic Fire
+        Input: 623H
         Description:
             Snaps to summon a ball of purple fire
             When it hits opponent, it sets them on fire but no damage
             When the move is inputted again the opponent explodes, another snap
             The fireball can set fire to people who are blocking
-
-        Input: 623H
     
     Plunge Into Darkness
         Description: pulls the opponent forward
-
         Input: 24H
 
     Winged Cross-up
+        Input: 24M
+        Use: Cross-up
         Description:
             In bat form, jumps over opponent and slashes back with wings
-
-        Input: 24M
-        
-        Use: Cross-up
 
 
     Bat Aerial Spin
@@ -174,15 +161,13 @@ Moves:
         
     Supers:
         Super Press: Install
-            If the dagger's blood is full, Xeaus goes into a superpowered state and does more damage (Pulls left hand out from pocket thing)
-
-            When used, the blood bursts into purple flames and Xeaus drinks the blood
+            - If the dagger's blood is full, Xeaus goes into a superpowered state and does more damage (Pulls left hand out from pocket thing)
+            - When used, the blood bursts into purple flames and Xeaus drinks the blood
 
         Super Execute:
-            Stabs enemy, throws them in the air, the dagger flying, slashes the opponent over
-            and over while bats fly in and swarm the enemy and when Xeaus is done, he tips his hat and backs up
-
-            Gets more damage from timing the press of the super button
+            - Stabs enemy, throws them in the air, the dagger flying, slashes the opponent over
+              and over while bats fly in and swarm the enemy and when Xeaus is done, he tips his hat and backs up
+            - Gets more damage from timing the press of the super button
         
         
     Inspiration - D&D Monster Manual
