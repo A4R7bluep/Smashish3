@@ -1,0 +1,158 @@
+
+Name: Blaze
+Description: A fiery demon with explosive attacks, emerging from the depths of hell.
+
+
+Appearance: |
+    Blaze stands at an imposing height, his demonic form radiating intense heat and ethereal flames. 
+    His body is lean and muscular, adorned with intricate black and crimson armor, reminiscent of molten lava. 
+    Dark, smoldering horns curve back from his forehead, framing his fierce, glowing ember-like eyes.
+    Streams of infernal fire dance and flicker around his body, trailing behind him as he moves with an otherworldly grace. 
+    His clawed hands and feet crackle with searing energy, leaving scorch marks on the ground. 
+    Blaze's deep, menacing voice resonates with the echoes of the underworld, striking fear into the hearts of his adversaries.
+    From his back, twin colossal wings unfold, comprised of blazing feathers that emit a radiant glow. 
+    As he readies himself for battle, the air around him shimmers with intense heat, and wisps of smoke and embers rise from his demonic form.
+    Blaze's presence is an embodiment of the inferno itself, a relentless force of destruction that leaves a trail of ash and cinders in his wake.
+
+
+Stats:
+    health: 100
+    power: 80
+    defense: 60
+    speed: 90
+
+
+Attacks:
+    Inferno Slash:
+        description: delivers a swift and precise slash with flaming claws.
+        power: 8
+        cooldown: 3
+        input: Light
+
+    Flame Strike:
+        description: thrusts forward with burning fist, engulfing the opponent in flames.
+        power: 12
+        cooldown: 5
+        input: Medium
+
+    Hellfire Stomp:
+        description: slams foot into the ground, causing an eruption of flames. 
+        power: 18
+        cooldown: 8
+        input: Heavy
+
+    Flame Kick:
+        description: delivers a crouching spin kick engulfed in flames.
+        power: 10
+        cooldown: 3
+        input: Down + Light
+
+    Inferno Punch:
+        description: charges up and unleashes a flaming punch.
+        power: 15
+        cooldown: 5
+        input: Forward + Light
+
+    Firestorm Kick:
+        description: releases a barrage of fiery kicks.
+        power: 20
+        cooldown: 8
+        input: Down + Forward + Medium
+
+    Phoenix Dive:
+        description: soars into the air and dives down, striking the opponent with a flaming fist.
+        power: 18
+        cooldown: 10
+        input: Down + Back + Heavy
+
+    Heatwave Slash:
+        description: slashes the air with fiery blade, creating a wave of heat that strikes the opponent.
+        power: 14
+        cooldown: 10
+        input: Forward, Medium
+
+
+Specials:
+    Blaze Mode:
+        description: ignites body, increasing attack power and speed for a short duration.
+        duration: 10
+        power bonus: 30
+        speed bonus: 20
+        cooldown: 20
+        input: Down, Down, Light
+
+    Blazing Uppercut:
+        description: performs a powerful uppercut engulfed in flames, launching the opponent into the air.
+        power: 25
+        cooldown: 12
+        input: Forward, Down, Down + Forward, Heavy
+
+    Fireball:
+        description: hurls a fireball at the opponent from a distance.
+        power: 12
+        cooldown: 6
+        input: Down, Down + Forward, Forward, Light
+   
+    Dragon's Breath:
+        description: breathes out a stream of fire, burning the opponent.
+        power: 12
+        cooldown: 6
+        input: Down, Down + Forward, Forward, Light
+
+    Burning Fury:
+        description: engulfs fists in flames, delivering a rapid series of fiery punches.
+        power: 20
+        cooldown: 15
+        input: Back, Down + Back, Down, Down + Forward, Forward, Heavy
+
+    Rising Inferno:
+        description: ignites the ground in front, creating a pillar of flames that launches the opponent into the air.
+        power: 28
+        cooldown: 14
+        input: Down, Down + Back, Back, Forward, Heavy
+
+
+Aerials:
+    Aerial Inferno:
+        description: performs a mid-air spinning slash, creating a fiery vortex.
+        power: 10
+        cooldown: 5
+        input: Light
+
+    Flame Dive:
+        description: dives from above, crashing down onto the opponent with a powerful flaming strike.
+        power: 15
+        cooldown: 8
+        input: Medium
+
+    Wings of Fury:
+        description: extends wings and unleashes a barrage of fiery feathers towards the opponent.
+        power: 20
+        cooldown: 12
+        input: Heavy
+
+
+Supers:
+    Infernal Fury:
+        description: summons a massive firestorm, engulfing the entire screen and dealing devastating damage to the opponent.
+        power: 50
+        cooldown: 60
+        input: Down, Down + Back, Back, Down, Down + Back, Back, Light + Medium + Heavy
+
+    Hellfire Torrent:
+        description: taps into the infernal depths, unleashing a torrent of hellfire upon the opponent.
+        power: 55
+        cooldown: 70
+        input: Down, Down + Forward, Forward, Down, Down + Forward, Forward, Light + Medium + Heavy
+
+
+Lore: |
+    Blaze, an infernal entity from the depths of hell, harnesses the scorching flames of the underworld. 
+    Once a fearsome lieutenant in the infernal hierarchy, he yearned for more power, driving him to challenge the demon lords themselves. 
+    Through a series of brutal trials, Blaze emerged victorious, absorbing their essence and ascending to a new level of demonic might.
+    Now unleashed upon the mortal realm, Blaze revels in chaos and destruction. His fiery presence leaves a trail of scorched earth in his wake. 
+    He seeks out formidable opponents to quench his insatiable thirst for battle and to prove his supremacy over all realms.
+    Yet, amidst his demonic nature, Blaze carries a flicker of humanity, a remnant of the soul that once resided within him. 
+    This ember of compassion occasionally compels him to protect the innocent from the otherworldly forces that threaten their existence.
+    As the realms collide in a climactic showdown, Blaze enters the mortal arena, his demonic power blazing forth. 
+    Through his relentless onslaught, he aims to claim victory and assert his dominance over both the mortal realm and the depths of hell itself.

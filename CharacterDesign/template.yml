@@ -1,0 +1,46 @@
+
+Name: 
+Description:
+
+
+Appearance: |
+
+
+Stats:
+    health: 
+    power: 
+    defense:
+    speed:
+
+
+Attacks: 
+    base attack: 
+        description:
+        power:
+        cooldown:
+        input:
+
+Specials:
+    base special:
+        description:
+        duration:
+        cooldown:
+        input:
+    
+    buff special:
+        description:
+        duration:
+        power bonus:
+        speed bonus:
+        cooldown: 
+        input: 
+
+
+Supers: 
+    base super:
+        description: 
+        power: 
+        cooldown: 
+
+
+Lore: |

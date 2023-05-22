@@ -1,11 +1,13 @@
 Name: Xeaus
 
+Note: Add more internal conflict, cast out priest, soldier/guard, criminal that doesn't kill
+
 Description: Vampire character
 
 Character Feel: Badass? Loose?
 
 Appearance:
-    Vampire:
+    Vampire: |
         A vampire that is 6 feet and 3 inches
         Tall, slender body
         Fair skin
@@ -74,7 +76,7 @@ Stage:
     infinite/looping?
 
 
-Mechanics: 
+Mechanics: |
     Possible - If a move is used in the last 10 moves multiple times, damage is reduced
     Blood meter - Drink dagger blood for attack boost
 
@@ -89,15 +91,16 @@ Moves:
 
     Grab: Holds opponent by the throat and effortlessly picks them up and bites opponent with fangs
 
-    Forward Punch
+    Forward Punch:
         Input: 5L
         Use: High
 
-    Dagger Stab
+    Dagger Stab:
         Input: 5M
         Use: Poke, combo setup
 
-    Knife Slash - Low, Mid, High hits
+    Knife Slash: 
+        note: Low, Mid, High hits
         Description: High anti-airs
         Input: 2M, 6M, 4M
         Use: 
@@ -105,21 +108,23 @@ Moves:
             Mid - Block pressure
             High - Anti-air, combo setup, flying
     
-    Sip of Blood
+    Sip of Blood:
         Input: 24L
         Description:
             Consumes some blood built up in the dagger
             Increases damage and defense for 3 seconds
 
-    Crouch Kick - right foot
+    Crouch Kick:
+        note: right foot
         Input: 2L
         Use: Low
     
-    Slash Kick - with left foot (like Happy Chaos 6K)
+    Slash Kick:
+        note: with left foot (like Happy Chaos 6K)
         Input: 6L
         Use: In combo
 
-    Bat Dash
+    Bat Dash:
         Input: 26L, 26M, 26H
         Use: Mix-up, approach
 
@@ -127,11 +132,12 @@ Moves:
         Medium: Goes farther, designed to cross up opponent - cancelable only into lights
         Heavy: Goes same distance as medium but attacks after launching up - uncancelable
 
-    Bat Swarm - Pulls back his jacket and bats swarm out (similar to Zato 5H)
+    Bat Swarm:
+        note: Pulls back his jacket and bats swarm out (similar to Zato 5H)
         Input: 4H
         Use: Spacing
 
-    Demonic Fire
+    Demonic Fire:
         Input: 623H
         Description:
             Snaps to summon a ball of purple fire
@@ -139,24 +145,24 @@ Moves:
             When the move is inputted again the opponent explodes, another snap
             The fireball can set fire to people who are blocking
     
-    Plunge Into Darkness
+    Plunge Into Darkness:
         Description: pulls the opponent forward
         Input: 24H
 
-    Winged Cross-up
+    Winged Cross-up:
         Input: 24M
         Use: Cross-up
         Description:
             In bat form, jumps over opponent and slashes back with wings
 
 
-    Bat Aerial Spin
+    Bat Aerial Spin:
         Input: jL
     
-    Wing Slash
+    Wing Slash:
         Input: jM
     
-    Bat Dive
+    Bat Dive:
         Input: jH
     
         
@@ -171,4 +177,4 @@ Moves:
             - Gets more damage from timing the press of the super button
         
         
-    Inspiration - D&D Monster Manual
+    Inspiration: D&D Monster Manual
