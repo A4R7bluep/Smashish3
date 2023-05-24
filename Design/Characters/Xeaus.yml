@@ -20,20 +20,17 @@ Appearance:
             black fedora
             black dress pants
             black dress shoes
-    
-    Bat:
-        A vampire bat around the size of a hawk
+
+    Bat: A vampire bat around the size of a hawk
         Black fur?
 
-    Dagger:
-        A long-ish dagger around a foot long and 1.5 inches wide
+    Dagger: A long-ish dagger around a foot long and 1.5 inches wide
         A pommel of a skull in silver
         The handle is made of ebony
-        The blade is curved backward 
+        The blade is curved backward
         The blade is bone white with a groove along the contour near the spine side, going from the guard to the tip
         The groove moves blood down the blade to be drunk from the skull later (MAKE MOVE)
         The blade tapers gently into a sharp point
-
 
 Lore:
     - Xeaus and his friends, Marc and Nils, died in the forest and were not found
@@ -43,38 +40,27 @@ Lore:
     - Afterward, he looked at what he had done and was filled with anguish
     - He decided to only feed upon his enemies and animals (even though he hated the taste of animals)
     - Decided to fight only if necessary
-    
 
 Intro Quotes:
-    Xeaus Stage:
-        (bows) Marc and Nils, may you rest in peace.
+    Xeaus Stage: (bows) Marc and Nils, may you rest in peace.
         (yells to the sky) Oh what a monster I have become! May I be useful to the world to make up for it!
         I shall atone for my sins. I will make up for them here and now.
-    
-    General:
-        I wish not to kill, but I will if I have to.
+
+    General: I wish not to kill, but I will if I have to.
         Come on, let's get this over with.
-    
-    Enemy?:
-        I hope your end is in agony.
+
+    Enemy?: I hope your end is in agony.
         I pity you. You could have been better.
 
-
 Win Quotes:
-    Enemy?:
-        I shall give you a proper burial.
+    Enemy?: I shall give you a proper burial.
         (Xeaus stage) Your body shall fertilize the forest.
         Be happy in your new freedom, my you rest in peace.
-    
-    General:
-        Did that hurt? I'll heal your wounds.
+
+    General: Did that hurt? I'll heal your wounds.
         I hope that was enough show of my power. I don't want to use too much more since I don't want to kill you.
 
-
-Stage: 
-    a forest with lush deciduous trees and a path going along the length
-    infinite/looping?
-
+Stage: Verdant Forest - infinite/looping?
 
 Mechanics: |
     Possible - If a move is used in the last 10 moves multiple times, damage is reduced
@@ -86,9 +72,7 @@ Mechanics: |
 
 Weakness: if Xeaus does not hit a melee attack in [certain amount of time] he starts taking damage
 
-
-Moves: 
-
+Moves:
     Grab: Holds opponent by the throat and effortlessly picks them up and bites opponent with fangs
 
     Forward Punch:
@@ -99,26 +83,24 @@ Moves:
         Input: 5M
         Use: Poke, combo setup
 
-    Knife Slash: 
+    Knife Slash:
         note: Low, Mid, High hits
         Description: High anti-airs
         Input: 2M, 6M, 4M
-        Use: 
-            Low - Poke, trip
+        Use: Low - Poke, trip
             Mid - Block pressure
             High - Anti-air, combo setup, flying
-    
+
     Sip of Blood:
         Input: 24L
-        Description:
-            Consumes some blood built up in the dagger
+        Description: Consumes some blood built up in the dagger
             Increases damage and defense for 3 seconds
 
     Crouch Kick:
         note: right foot
         Input: 2L
         Use: Low
-    
+
     Slash Kick:
         note: with left foot (like Happy Chaos 6K)
         Input: 6L
@@ -139,12 +121,11 @@ Moves:
 
     Demonic Fire:
         Input: 623H
-        Description:
-            Snaps to summon a ball of purple fire
+        Description: Snaps to summon a ball of purple fire
             When it hits opponent, it sets them on fire but no damage
             When the move is inputted again the opponent explodes, another snap
             The fireball can set fire to people who are blocking
-    
+
     Plunge Into Darkness:
         Description: pulls the opponent forward
         Input: 24H
@@ -152,20 +133,17 @@ Moves:
     Winged Cross-up:
         Input: 24M
         Use: Cross-up
-        Description:
-            In bat form, jumps over opponent and slashes back with wings
-
+        Description: In bat form, jumps over opponent and slashes back with wings
 
     Bat Aerial Spin:
         Input: jL
-    
+
     Wing Slash:
         Input: jM
-    
+
     Bat Dive:
         Input: jH
-    
-        
+
     Supers:
         Super Press: Install
             - If the dagger's blood is full, Xeaus goes into a superpowered state and does more damage (Pulls left hand out from pocket thing)
@@ -175,6 +153,5 @@ Moves:
             - Stabs enemy, throws them in the air, the dagger flying, slashes the opponent over
               and over while bats fly in and swarm the enemy and when Xeaus is done, he tips his hat and backs up
             - Gets more damage from timing the press of the super button
-        
-        
+
     Inspiration: D&D Monster Manual
