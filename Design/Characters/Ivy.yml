@@ -1,4 +1,4 @@
-Name:
+Name: Ivy
 Description:
 
 Appearance: |
@@ -11,7 +11,7 @@ Stats:
 
 Attacks:
     base attack:
-        description:
+        description: 
         power:
         cooldown:
         input:
@@ -24,10 +24,10 @@ Specials:
         input:
 
     buff special:
-        description:
-        duration:
-        power bonus:
-        speed bonus:
+        description: |
+            Increases growth level for the game
+            Growth level allows you to do longer range attacks
+        duration: Until the end of the game
         cooldown:
         input:
 

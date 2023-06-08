@@ -1,3 +1,10 @@
+Gameplay:
+    Each game made up of 3 
+    Winning 2 rounds is needed to win a game
+    Each round is 99 seconds long
+    If time runs out, the player with the most health wins
+    If a round is a draw, both sides get a win
+
 GUI:
     HUD:
         Health Bars:
@@ -21,7 +28,7 @@ GUI:
 Mechanics:
     Meter:
         Dropping block at the right time (1 or 2 frames) allows you to parry, gives back a small amount of meter and health
-        Slowdown that can be used for defense or offense, uses 25% meter
+        Slowdown that can be used for defense or offense, uses 50% meter
         Super press, does a lot of damage at once, uses 50% meter
         Super execute, does a lot of damage at once and more when pressed with the right timing, uses 75% meter
         Attack canceled attacks, uses 25% meter
@@ -36,12 +43,17 @@ Mechanics:
         Auto turn-around
 
 Buttons:
-    3 buttons, Light, Medium, and Heavy (Abbreviated L, M, H)
+    Attack Buttons: Light, Medium, and Heavy (Abbreviated L, M, H)
+    System button: Abbreviated S
+    Dash button: Abbreviated D
 
-    Pressing MH together inputs grab with forward or back for each side of throw
-    Pressing quarter circle left or right and LM inputs roll
-    Pressing LMH inputs Super Press
-    Pressing double quarter circle forward and LMH inputs Super Execute
-    Pressing LH inputs slowdown
-    Pressing dash button and a direction after hitting an attack allows you to cancel the attack with a special dash
-    Dash button
+    Grab / Throw: Forward + S or Back + S
+    Roll: Quarter circle forward or backward + S
+    Super Press: System and Medium Buttons
+    Super Execute: Double Quarter Circle Forward + System and Heavy Buttons
+    Meter Slowdown: System and Light Buttons
+    Dash Cancel: Dash button and direction after hitting an attack cancels into a special dash
+
+    Layout:
+        L M H
+        S D

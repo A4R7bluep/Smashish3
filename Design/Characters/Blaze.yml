@@ -18,6 +18,8 @@ Stats:
     defense: 60
     speed: 90
 
+Grab: 
+
 Attacks:
     Inferno Slash:
         description: delivers a swift and precise slash with flaming claws.
