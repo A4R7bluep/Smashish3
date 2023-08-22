@@ -1,7 +1,14 @@
 Name: Blaze
+
 Description: A fiery demon with explosive attacks, emerging from the depths of hell.
 
-Appearance:
+Stats:
+    health: 100
+    power: 80
+    defense: 70
+    speed: 70
+
+Appearance: |
     Blaze stands at an imposing height, his demonic form radiating intense heat and ethereal flames.
     His body is lean and muscular, adorned with intricate black and crimson armor, reminiscent of molten lava.
     Dark, smoldering horns curve back from his forehead, framing his fierce, glowing ember-like eyes.
@@ -12,13 +19,31 @@ Appearance:
     As he readies himself for battle, the air around him shimmers with intense heat, and wisps of smoke and embers rise from his demonic form.
     Blaze's presence is an embodiment of the inferno itself, a relentless force of destruction that leaves a trail of ash and cinders in his wake.
 
-Stats:
-    health: 100
-    power: 80
-    defense: 60
-    speed: 90
+Lore:
+    Blaze, an infernal entity from the depths of hell, harnesses the scorching flames of the underworld.
+    Once a fearsome lieutenant in the infernal hierarchy, he yearned for more power, driving him to challenge the demon lords themselves.
+    Through a series of brutal trials, Blaze emerged victorious, absorbing their essence and ascending to a new level of demonic might.
+    Now unleashed upon the mortal realm, Blaze revels in chaos and destruction. His fiery presence leaves a trail of scorched earth in his wake.
+    He seeks out formidable opponents to quench his insatiable thirst for battle and to prove his supremacy over all realms.
+    Yet, amidst his demonic nature, Blaze carries a flicker of humanity, a remnant of the soul that once resided within him.
+    This ember of compassion occasionally compels him to protect the innocent from the otherworldly forces that threaten their existence.
+    As the realms collide in a climactic showdown, Blaze enters the mortal arena, his demonic power blazing forth.
+    Through his relentless onslaught, he aims to claim victory and assert his dominance over both the mortal realm and the depths of hell itself.
 
-Grab: 
+Intro Quotes:
+    Blaze Stage: |
+        I have fought countless demon lords on this very ground. You are no match for me.
+        You are nothing compared to the demon lords I have slain.
+
+    General: |
+        I will turn you to ash.
+
+Win Quotes:
+    General: |
+
+Stage: Infernal Abyss
+
+Grab:
 
 Attacks:
     Inferno Slash:
@@ -139,24 +164,3 @@ Supers:
         power: 55
         cooldown: 70
         input: Down, Down + Forward, Forward, Down, Down + Forward, Forward, Light + Medium + Heavy
-
-Lore:
-    Blaze, an infernal entity from the depths of hell, harnesses the scorching flames of the underworld.
-    Once a fearsome lieutenant in the infernal hierarchy, he yearned for more power, driving him to challenge the demon lords themselves.
-    Through a series of brutal trials, Blaze emerged victorious, absorbing their essence and ascending to a new level of demonic might.
-    Now unleashed upon the mortal realm, Blaze revels in chaos and destruction. His fiery presence leaves a trail of scorched earth in his wake.
-    He seeks out formidable opponents to quench his insatiable thirst for battle and to prove his supremacy over all realms.
-    Yet, amidst his demonic nature, Blaze carries a flicker of humanity, a remnant of the soul that once resided within him.
-    This ember of compassion occasionally compels him to protect the innocent from the otherworldly forces that threaten their existence.
-    As the realms collide in a climactic showdown, Blaze enters the mortal arena, his demonic power blazing forth.
-    Through his relentless onslaught, he aims to claim victory and assert his dominance over both the mortal realm and the depths of hell itself.
-
-Intro Quotes:
-    Blaze Stage: |
-
-    General: |
-
-Win Quotes:
-    General: |
-
-Stage: Infernal Abyss

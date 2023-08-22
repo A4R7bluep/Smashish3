@@ -1,20 +1,51 @@
 Name: Ivy
 Description:
 
+Stats:
+    health: 75
+    power: 80
+    defense: 60
+    speed: 85
+
 Appearance: |
 
-Stats:
-    health:
-    power:
-    defense:
-    speed:
+Lore: 
+    - 
+
+Intro Quotes:
+    Character Stage: |
+
+    General: |
+
+Win Quotes:
+    General: |
+
+Stage:
+
+Mechanics: |
+
+Mechanic Overrides: |
+
+Grab: 
 
 Attacks:
-    base attack:
-        description: 
-        power:
+    Rosethorn:
+        description: a spike stabs through the ground and distance changes depending on button pressed
+        power: 12
         cooldown:
-        input:
+            L: 3
+            M: 5
+            H: 6
+        input: Down, Down, Light/Medium/Heavy
+
+    Plant Overhead:
+        description: A plant spike grows from behind opponent, curves, and hits opponent
+        power: 16
+        cooldown:
+        input: Down, Back, Heavy
+
+    Sword Grass:
+        description: a spike comes out of the ground in front of the opponent
 
 Specials:
     base special:
@@ -36,5 +67,3 @@ Supers:
         description:
         power:
         cooldown:
-
-Lore: |
