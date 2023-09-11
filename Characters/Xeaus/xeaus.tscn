@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh20ej0nxgvkp"]
+
+[ext_resource type="Texture2D" uid="uid://dwv3ayjs8af41" path="res://icon.png" id="1_wve5q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_huhaj"]
+size = Vector2(64, 64)
+
+[node name="Xeaus" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wve5q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_huhaj")
