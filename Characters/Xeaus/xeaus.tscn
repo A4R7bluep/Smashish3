@@ -1,14 +1,404 @@
-[gd_scene load_steps=3 format=3 uid="uid://dh20ej0nxgvkp"]
+[gd_scene load_steps=50 format=3 uid="uid://dh20ej0nxgvkp"]
 
-[ext_resource type="Texture2D" uid="uid://dwv3ayjs8af41" path="res://icon.png" id="1_wve5q"]
+[ext_resource type="Script" path="res://Characters/Xeaus/xeaus.gd" id="1_y5pna"]
+[ext_resource type="Texture2D" uid="uid://c55q3djv6ssf1" path="res://XeausMainModel.png" id="2_fjcsj"]
+[ext_resource type="PackedScene" uid="uid://b0nnwfnfiv2ng" path="res://Characters/Universal/input_controller.tscn" id="2_xkdth"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_huhaj"]
-size = Vector2(64, 64)
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ggvso"]
+animation = &"IDLE"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7l608"]
+animation = &"air_dash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7iqlh"]
+animation = &"backdash"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tecwr"]
+animation = &"crouch"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r3y3v"]
+animation = &"falling"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aqocu"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_giwwy"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rqca5"]
+animation = &"walk_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v36bh"]
+animation = &"walk_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7hcm8"]
+animation = &"win"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mdd6y"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yrjo7"]
+advance_mode = 2
+advance_condition = &"win"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_msis8"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_or63j"]
+advance_mode = 2
+advance_condition = &"in_air"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2pgtf"]
+advance_mode = 2
+advance_condition = &"is_falling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ki1f"]
+advance_mode = 2
+advance_condition = &"on_ground"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q0odh"]
+advance_mode = 2
+advance_condition = &"walk_forward"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oeo1c"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ej6q7"]
+advance_mode = 2
+advance_condition = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sps8p"]
+advance_mode = 2
+advance_condition = &"walk_forward"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rv36b"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qx4to"]
+advance_mode = 2
+advance_condition = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ph0j5"]
+advance_mode = 2
+advance_condition = &"walk_backward"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_attxi"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kww26"]
+advance_mode = 2
+advance_condition = &"backdash"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3u4d1"]
+advance_mode = 2
+advance_condition = &"walk_backward"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rcacc"]
+advance_mode = 2
+advance_condition = &"backdash"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bh11k"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wa6rd"]
+advance_mode = 2
+advance_condition = &"crouch"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xl5si"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1gd3f"]
+advance_mode = 2
+advance_condition = &"in_air_dash"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6xflu"]
+advance_mode = 2
+advance_condition = &"is_falling"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rssxd"]
+states/End/position = Vector2(1131, 53)
+states/IDLE/node = SubResource("AnimationNodeAnimation_ggvso")
+states/IDLE/position = Vector2(581, 233)
+states/Start/position = Vector2(106, 233)
+states/air_dash/node = SubResource("AnimationNodeAnimation_7l608")
+states/air_dash/position = Vector2(128, 398)
+states/backdash/node = SubResource("AnimationNodeAnimation_7iqlh")
+states/backdash/position = Vector2(864, 171)
+states/crouch/node = SubResource("AnimationNodeAnimation_tecwr")
+states/crouch/position = Vector2(581, 398)
+states/falling/node = SubResource("AnimationNodeAnimation_r3y3v")
+states/falling/position = Vector2(186, 299)
+states/jump/node = SubResource("AnimationNodeAnimation_aqocu")
+states/jump/position = Vector2(305, 398)
+states/run/node = SubResource("AnimationNodeAnimation_giwwy")
+states/run/position = Vector2(445, 67)
+states/walk_backward/node = SubResource("AnimationNodeAnimation_rqca5")
+states/walk_backward/position = Vector2(739, 53)
+states/walk_forward/node = SubResource("AnimationNodeAnimation_v36bh")
+states/walk_forward/position = Vector2(272, 120)
+states/win/node = SubResource("AnimationNodeAnimation_7hcm8")
+states/win/position = Vector2(1131, 393)
+transitions = ["Start", "IDLE", SubResource("AnimationNodeStateMachineTransition_mdd6y"), "IDLE", "win", SubResource("AnimationNodeStateMachineTransition_yrjo7"), "win", "End", SubResource("AnimationNodeStateMachineTransition_msis8"), "IDLE", "jump", SubResource("AnimationNodeStateMachineTransition_or63j"), "jump", "falling", SubResource("AnimationNodeStateMachineTransition_2pgtf"), "falling", "IDLE", SubResource("AnimationNodeStateMachineTransition_1ki1f"), "IDLE", "walk_forward", SubResource("AnimationNodeStateMachineTransition_q0odh"), "walk_forward", "IDLE", SubResource("AnimationNodeStateMachineTransition_oeo1c"), "walk_forward", "run", SubResource("AnimationNodeStateMachineTransition_ej6q7"), "run", "walk_forward", SubResource("AnimationNodeStateMachineTransition_sps8p"), "run", "IDLE", SubResource("AnimationNodeStateMachineTransition_rv36b"), "IDLE", "run", SubResource("AnimationNodeStateMachineTransition_qx4to"), "IDLE", "walk_backward", SubResource("AnimationNodeStateMachineTransition_ph0j5"), "walk_backward", "IDLE", SubResource("AnimationNodeStateMachineTransition_attxi"), "walk_backward", "backdash", SubResource("AnimationNodeStateMachineTransition_kww26"), "backdash", "walk_backward", SubResource("AnimationNodeStateMachineTransition_3u4d1"), "IDLE", "backdash", SubResource("AnimationNodeStateMachineTransition_rcacc"), "backdash", "IDLE", SubResource("AnimationNodeStateMachineTransition_bh11k"), "IDLE", "crouch", SubResource("AnimationNodeStateMachineTransition_wa6rd"), "crouch", "IDLE", SubResource("AnimationNodeStateMachineTransition_xl5si"), "jump", "air_dash", SubResource("AnimationNodeStateMachineTransition_1gd3f"), "air_dash", "falling", SubResource("AnimationNodeStateMachineTransition_6xflu")]
+graph_offset = Vector2(-8, -17)
+
+[sub_resource type="Animation" id="Animation_pwaqt"]
+resource_name = "IDLE"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["idle"],
+"method": &"test"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_iey0f"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ot86r"]
+resource_name = "air_dash"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["air_dash"],
+"method": &"test"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_40281"]
+resource_name = "backdash"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["backdash"],
+"method": &"test"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_oqhta"]
+resource_name = "crouch"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["crouch"],
+"method": &"test"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1egt5"]
+resource_name = "dash_forward"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["foward dash"],
+"method": &"test"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_jiyd7"]
+resource_name = "falling"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["falling"],
+"method": &"test"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_n2ynr"]
+resource_name = "jump"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["jump"],
+"method": &"test"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_5a5oc"]
+resource_name = "run"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["run"],
+"method": &"test"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_fcjvk"]
+resource_name = "walk_backward"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["walk backward"],
+"method": &"test"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_tptmm"]
+resource_name = "walk_forward"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["walk forward"],
+"method": &"test"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_xnln8"]
+resource_name = "win"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6nx15"]
+_data = {
+"IDLE": SubResource("Animation_pwaqt"),
+"RESET": SubResource("Animation_iey0f"),
+"air_dash": SubResource("Animation_ot86r"),
+"backdash": SubResource("Animation_40281"),
+"crouch": SubResource("Animation_oqhta"),
+"dash_forward": SubResource("Animation_1egt5"),
+"falling": SubResource("Animation_jiyd7"),
+"jump": SubResource("Animation_n2ynr"),
+"run": SubResource("Animation_5a5oc"),
+"walk_backward": SubResource("Animation_fcjvk"),
+"walk_forward": SubResource("Animation_tptmm"),
+"win": SubResource("Animation_xnln8")
+}
 
 [node name="Xeaus" type="CharacterBody2D"]
+script = ExtResource("1_y5pna")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_wve5q")
+[node name="facer" type="Node2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_huhaj")
+[node name="Sprite2D" type="Sprite2D" parent="facer"]
+texture_filter = 1
+position = Vector2(-23, 10)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_fjcsj")
+
+[node name="Input_Controller" parent="." instance=ExtResource("2_xkdth")]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_rssxd")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/conditions/backdash = false
+parameters/conditions/crouch = false
+parameters/conditions/idle = false
+parameters/conditions/in_air = false
+parameters/conditions/in_air_dash = false
+parameters/conditions/is_falling = false
+parameters/conditions/on_ground = false
+parameters/conditions/run = false
+parameters/conditions/walk_backward = false
+parameters/conditions/walk_forward = false
+parameters/conditions/win = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationTree")
+autoplay = "IDLE"
+libraries = {
+"": SubResource("AnimationLibrary_6nx15")
+}
+
+[node name="CharacterInteraction" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(65, 0, 0, 280, -75, 0, 0, -280)
+
+[connection signal="BACK" from="Input_Controller" to="." method="_on_input_controller_back"]
+[connection signal="DASH" from="Input_Controller" to="." method="_on_input_controller_dash"]
+[connection signal="DOWN" from="Input_Controller" to="." method="_on_input_controller_down"]
+[connection signal="FORWARD" from="Input_Controller" to="." method="_on_input_controller_forward"]
+[connection signal="H" from="Input_Controller" to="." method="_on_input_controller_h"]
+[connection signal="HCBH" from="Input_Controller" to="." method="_on_input_controller_hcbh"]
+[connection signal="L" from="Input_Controller" to="." method="_on_input_controller_l"]
+[connection signal="M" from="Input_Controller" to="." method="_on_input_controller_m"]
+[connection signal="Normal2L" from="Input_Controller" to="." method="_on_input_controller_normal_2l"]
+[connection signal="Normal2M" from="Input_Controller" to="." method="_on_input_controller_normal_2m"]
+[connection signal="Normal4H" from="Input_Controller" to="." method="_on_input_controller_normal_4h"]
+[connection signal="Normal4M" from="Input_Controller" to="." method="_on_input_controller_normal_4m"]
+[connection signal="Normal6L" from="Input_Controller" to="." method="_on_input_controller_normal_6l"]
+[connection signal="Normal6M" from="Input_Controller" to="." method="_on_input_controller_normal_6m"]
+[connection signal="QCBH" from="Input_Controller" to="." method="_on_input_controller_qcbh"]
+[connection signal="QCBL" from="Input_Controller" to="." method="_on_input_controller_qcbl"]
+[connection signal="QCBM" from="Input_Controller" to="." method="_on_input_controller_qcbm"]
+[connection signal="QCFH" from="Input_Controller" to="." method="_on_input_controller_qcfh"]
+[connection signal="QCFL" from="Input_Controller" to="." method="_on_input_controller_qcfl"]
+[connection signal="QCFM" from="Input_Controller" to="." method="_on_input_controller_qcfm"]
+[connection signal="UP" from="Input_Controller" to="." method="_on_input_controller_up"]
+[connection signal="UP_BACK" from="Input_Controller" to="." method="_on_input_controller_up_back"]
+[connection signal="UP_FORWARD" from="Input_Controller" to="." method="_on_input_controller_up_forward"]

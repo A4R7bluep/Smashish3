@@ -20,6 +20,10 @@ Appearance: |
     Blaze's presence is an embodiment of the inferno itself, a relentless force of destruction that leaves a trail of ash and cinders in his wake.
 
 Lore:
+    - Driven to gain power by the voice of Iklith in his head (all demons have it)
+    - Gains more power and experience by constantly fighting the demon lords
+
+Old Lore:
     Blaze, an infernal entity from the depths of hell, harnesses the scorching flames of the underworld.
     Once a fearsome lieutenant in the infernal hierarchy, he yearned for more power, driving him to challenge the demon lords themselves.
     Through a series of brutal trials, Blaze emerged victorious, absorbing their essence and ascending to a new level of demonic might.
@@ -59,7 +63,7 @@ Attacks:
         input: Medium
 
     Hellfire Stomp:
-        description: slams foot into the ground, causing an eruption of flames.
+        description: slams foot onto the ground, causing an eruption of flames.
         power: 18
         cooldown: 8
         input: Heavy

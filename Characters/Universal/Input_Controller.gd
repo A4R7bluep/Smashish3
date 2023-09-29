@@ -1,93 +1,250 @@
 extends Node
 
+signal L
+signal M
+signal H
 
-signal QCF
-signal HCF
-signal QCB
-signal HCB
-signal DP
+signal QCFL
+signal QCFM
+signal QCFH
+signal QCFS
+
+signal HCFL
+signal HCFM
+signal HCFH
+
+signal QCBL
+signal QCBM
+signal QCBH
+signal QCBS
+signal HCBL
+signal HCBM
+signal HCBH
+
+signal DPL
+signal DPM
+signal DPH
+
+signal Normal6L
+signal Normal6M
+signal Normal6H
+signal Normal6S
+
+signal Normal4L
+signal Normal4M
+signal Normal4H
+signal Normal4S
+
+signal Normal2L
+signal Normal2M
+signal Normal2H
 
 signal UP
+signal UP_FORWARD
+signal UP_BACK
 signal DOWN
 signal FORWARD
 signal BACK
+signal DASH
 
-var inputTimeDefault = 0.1
+var inputTimeDefault = 0.5
 var inputTime = inputTimeDefault
 var inputBuffer = []
+
+var playernumber
 
 var inputTree = {
 	"(1, 0)": {
 		"(0, -1)": {
-			"(1, -1)": "DP",
+			"(1, -1)": {
+				"L": "DPL",
+				"M": "DPM",
+				"H": "DPH",
+			},
 		},
 		"(1, -1)": {
 			"(0, -1)": {
 				"(-1, -1)": {
-					"(-1, 0)": "HCB"
+					"(-1, 0)": {
+						"L": "HCBL",
+						"M": "HCBM",
+						"H": "HCBH",
+					},
 				},
 			},
 		},
+		"L": "Normal6L",
+		"M": "Normal6M",
+		"H": "Normal6H",
+		"S": "Normal6S"
 	},
 	"(0, -1)": {
 		"(1, -1)": {
-			"(1, 0)": "QCF"
+			"(1, 0)": {
+				"L": "QCFL",
+				"M": "QCFM",
+				"H": "QCFH",
+				"S": "QCFS",
+			},
 		},
 		"(-1, -1)": {
-			"(-1, 0)": "QCB"
+			"(-1, 0)": {
+				"L": "QCBL",
+				"M": "QCBM",
+				"H": "QCBH",
+				"S": "QCBS",
+			},
 		},
+		"L": "Normal2L",
+		"M": "Normal2M",
+		"H": "Normal2H",
 	},
 	"(-1, 0)": {
 		"(-1, -1)": {
 			"(0, -1)": {
 				"(1, -1)": {
-					"(1, 0)": "HCF"
+					"(1, 0)": {
+						"L": "HCFL",
+						"M": "HCFM",
+						"H": "HCFH",
+					},
 				},
 			},
 		},
+		"L": "Normal4L",
+		"M": "Normal4M",
+		"H": "Normal4H",
+		"S": "Normal4S",
 	},
+	"L": "L",
+	"M": "M",
+	"H": "H",
 }
 
-func navigate_tree():
+func navigate_tree(button):
 	var currentPath = inputTree
 	
-	for arrIndex in range(len(inputBuffer)):
-#		print(arrIndex)
-		if str(inputBuffer[arrIndex]) in ["(1, 0)", "(0, -1)", "(-1, 0)"]:
-			for treeItem in currentPath:
-				if currentPath.has(str(inputBuffer[arrIndex])):
-					if arrIndex == len(inputBuffer) -1:
-						currentPath = currentPath[str(inputBuffer[arrIndex])]
-						print(currentPath)
-						if currentPath in ["HCF", "HCB", "QCB", "QCF", "DP"]:
-							print(currentPath)
-	
-#	print(inputBuffer)
-#	if len(inputBuffer) > 1:
-#		for i in range(len(inputBuffer)):
-#			var currentPath = {}
-#			if inputTree.has(str(inputBuffer[i])):
-#				currentPath = inputTree[str(inputBuffer[i])]
-#				if currentPath.has(str(inputBuffer[i + 1])):
-#					currentPath = inputTree[str(inputBuffer[i + 1])]
-#					print(currentPath)
+	for i in range(len(inputBuffer)):
+		if str(inputBuffer[i]) == "(1, 0)" and currentPath.has("(1, 0)"):
+			currentPath = currentPath["(1, 0)"]
+			
+		elif str(inputBuffer[i]) == "(-1, 0)" and currentPath.has("(-1, 0)"):
+			currentPath = currentPath["(-1, 0)"]
+			
+		elif str(inputBuffer[i]) == "(0, -1)" and currentPath.has("(0, -1)"):
+			currentPath = currentPath["(0, -1)"]
+			
+		elif str(inputBuffer[i]) == "(1, -1)" and currentPath.has("(1, -1)"):
+			currentPath = currentPath["(1, -1)"]
+			
+		elif str(inputBuffer[i]) == "(-1, -1)" and currentPath.has("(-1, -1)"):
+			currentPath = currentPath["(-1, -1)"]
+			
+		elif str(inputBuffer[i]) == button and currentPath.has(button):
+			currentPath = currentPath[button]
+			
+		if str(currentPath) in ["DP" + button, "HCB" + button, "HCF" + button, "QCB" + button, "QCF" + button,
+			"Normal2" + button, "Normal4" + button, "Normal6" + button, button]:
+			return str(currentPath)
 
 
 func _process(delta):
 	#Input
-	var Char_Right = Input.get_action_strength("Char_Right")
-	var Char_Left = Input.get_action_strength("Char_Left")
-	var Char_Down = Input.get_action_strength("Char_Down")
-	var Char_Up = Input.get_action_strength("Char_Up")
+	var right = ""
+	var left = ""
+	var down = ""
+	var up = ""
+	var light = ""
+	var med = ""
+	var heavy = ""
+	var sys = ""
+	var dash = ""
+		
+	if playernumber == 1:
+		right = "Char_Right1"
+		left = "Char_Left1"
+		down = "Char_Down1"
+		up = "Char_Up1"
+		light = "Char_Light1"
+		med = "Char_Med1"
+		heavy = "Char_Heavy1"
+		sys = "Char_Sys1"
+		dash = "Char_Dash1"
+	elif playernumber == 2:
+		right = "Char_Right2"
+		left = "Char_Left2"
+		down = "Char_Down2"
+		up = "Char_Up2"
+		light = "Char_Light2"
+		med = "Char_Med2"
+		heavy = "Char_Heavy2"
+		sys = "Char_Sys2"
+		dash = "Char_Dash2"
 	
-	var Char_Light = Input.get_action_strength("Char_Light")
-	var Char_Med = Input.get_action_strength("Char_Med")
-	var Char_Heavy = Input.get_action_strength("Char_Heavy")
-	var Char_Sys = Input.get_action_strength("Char_Sys")
-	var Char_Dash = Input.get_action_strength("Char_Dash")
 	
-	var CurrentVector = Vector2(Char_Right - Char_Left, Char_Up - Char_Down)
+	var Char_Right = Input.get_action_strength(right)
+	var Char_Left = Input.get_action_strength(left)
+	var Char_Down = Input.get_action_strength(down)
+	var Char_Up = Input.get_action_strength(up)
 	
+	var Char_Light = Input.is_action_pressed(light)
+	var Char_Med = Input.is_action_pressed(med)
+	var Char_Heavy = Input.is_action_pressed(heavy)
+	var Char_Sys = Input.is_action_pressed(sys)
+	var Char_Dash = Input.is_action_pressed(dash)
+	
+	var facing = get_parent().facing
+	
+	var CurrentVector = Vector2.ZERO
+	
+	
+	CurrentVector = Vector2((Char_Right - Char_Left) * facing, Char_Up - Char_Down)
+	CurrentVector.x *= facing
+	
+	
+	if CurrentVector.y == 1 and CurrentVector.x == 1:
+		emit_signal("UP_FORWARD")
+	if CurrentVector.y == 1 and CurrentVector.x == -1:
+		emit_signal("UP_BACK")
+	if CurrentVector.x == 1:
+		emit_signal("FORWARD")
+	if CurrentVector.x == -1:
+		emit_signal("BACK")
+	if CurrentVector.y == 1:
+		emit_signal("UP")
+	if CurrentVector.y == -1:
+		emit_signal("DOWN")
+	
+	if Char_Light:
+		inputBuffer.append("L")
+		var command = navigate_tree("L")
+		emit_signal(str(command))
+		inputBuffer = []
+		inputTime = inputTimeDefault
+	
+	if Char_Med:
+		inputBuffer.append("M")
+		var command = navigate_tree("M")
+		emit_signal(str(command))
+		inputBuffer = []
+		inputTime = inputTimeDefault
+	
+	if Char_Heavy:
+		inputBuffer.append("H")
+		var command = navigate_tree("H")
+		emit_signal(str(command))
+		inputBuffer = []
+		inputTime = inputTimeDefault
+	
+	if Char_Sys:
+		inputBuffer.append("S")
+		var command = navigate_tree("S")
+		emit_signal(str(command))
+		inputBuffer = []
+		inputTime = inputTimeDefault
+	
+	if Char_Dash:
+		emit_signal("DASH", CurrentVector)
 	
 	if inputBuffer.back() == null or inputBuffer.back() != CurrentVector:
 		inputBuffer.append(CurrentVector)
@@ -96,7 +253,5 @@ func _process(delta):
 	inputTime -= delta
 
 	if inputTime <= 0:
-#		print(inputBuffer)
-		navigate_tree()
 		inputBuffer = []
 		inputTime = inputTimeDefault

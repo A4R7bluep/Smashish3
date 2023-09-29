@@ -4,7 +4,7 @@ Note: Add more internal conflict, cast out priest, soldier/guard, criminal that 
 
 Description: Vampire character
 
-Character Feel: Badass? Loose?
+Character Feel: Cool, open
 
 Stats:
     health: 90
@@ -19,18 +19,15 @@ Appearance:
         Fair skin
         strength comes from vampiric power
         Keeps his hands in the pockets of his pants for some moves
+        For some of his movement options he uses his black bat wings
 
     Clothes: |
-        black frock coat, brimming collar
+        black frock coat, blood red lining, brimming collar
         blood red waistcoat, with black buttons, close to neck collar like a choker
         black fedora
         black dress pants
         black dress shoes
         blood red lily on left front shoulder
-
-    Bat: |
-        A vampire bat around the size of a hawk
-        Black fur?
 
     Dagger: |
         A long-ish dagger around a foot long and 1.5 inches wide
@@ -113,7 +110,10 @@ Moves:
     Sip of Blood:
         Input: 24L
         Description: Consumes some blood built up in the dagger
+            The blood on the dagger, shown by a blood meter, turns into particles that flies in the air
+            Works like Nago's blood but backward
             Increases damage and defense for 3 seconds
+            Gives more block stun and a second hit that pops up, second hit works on block
 
     Crouch Kick:
         note: right foot
@@ -146,22 +146,24 @@ Moves:
             The fireball can set fire to people who are blocking
 
     Plunge Into Darkness:
-        Description: pulls the opponent forward
         Input: 24H
+        Description: pulls the opponent forward
 
     Winged Cross-up:
         Input: 24M
-        Use: Cross-up
-        Description: In bat form, jumps over opponent and slashes back with wings
+        Use: Cross-up, overhead
+        Description: pushes off with wings and does a downward mid-air slash
 
-    Bat Aerial Spin:
+    Aerial Pommel Bash:
         Input: jL
 
-    Wing Slash:
+    Aerial Dagger Slash:
         Input: jM
+        Description: Horizontal slash of the dagger
 
-    Bat Dive:
+    Spiking Slash:
         Input: jH
+        Description: Diagonal slash of the dagger, knocks the opponent to the ground, puts opponent in knockdown state
 
     Supers:
         Super Press: Install

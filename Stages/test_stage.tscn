@@ -1,10 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8qr5h2xxbmfl"]
+[gd_scene load_steps=5 format=3 uid="uid://c8qr5h2xxbmfl"]
+
+[ext_resource type="Script" path="res://Stages/test_stage.gd" id="1_m701g"]
+[ext_resource type="Texture2D" uid="uid://bcyxig6r0twm1" path="res://Yggdrasil_Seed_29.png" id="1_mvuit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k48u1"]
-size = Vector2(1152, 20)
+size = Vector2(4165, 68)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wmkih"]
+size = Vector2(37, 2334)
 
 [node name="TestStage" type="Node2D"]
+script = ExtResource("1_m701g")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(577, 639)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(978, -86)
+scale = Vector2(4.14933, 4.668)
+texture = ExtResource("1_mvuit")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(989, 928)
 shape = SubResource("RectangleShape2D_k48u1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="StaticBody2D" type="RigidBody2D" parent="Camera2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/StaticBody2D"]
+position = Vector2(-979, -626)
+shape = SubResource("RectangleShape2D_wmkih")
+
+[node name="StaticBody2D2" type="RigidBody2D" parent="Camera2D"]
+scale = Vector2(-1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/StaticBody2D2"]
+position = Vector2(-979, -626)
+shape = SubResource("RectangleShape2D_wmkih")
