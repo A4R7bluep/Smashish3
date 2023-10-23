@@ -2,22 +2,25 @@ extends CharacterBody2D
 
 
 var facing = 1 # 1 is on left, -1 is on right
-var playernumber = -1
+var playernumber;
 
 # Movement Variables
 @export var WALK_SPEED = 200
 @export var RUN_SPEED = 400
-@export var JUMP_SPEED = -1800 # Negative is up
-@export var GRAVITY = 2500
+@export var JUMP_SPEED = -2000 # Negative is up
+@export var GRAVITY = 3000
 @export var dash_fall_speed = 1
 
 var jump_lock = 0
+var wall_slide = false
 
 # Object Variables
-@onready var animation_tree = $AnimationTree
-@onready var input_controller = $Input_Controller
 @onready var facer = $facer
+@onready var input_controller = $Input_Controller
+@onready var animation_tree = $AnimationTree
+@onready var character_coll = $Area2D
 @onready var state_machine = animation_tree["parameters/playback"]
+
 
 # Movement
 func _on_input_controller_forward():
@@ -110,6 +113,7 @@ func _physics_process(delta):
 		facer.scale.y = -1
 		facer.rotation_degrees = 180
 	
+	
 	animation_tree["parameters/conditions/on_ground"] = is_on_floor()
 	animation_tree["parameters/conditions/in_air"] = not is_on_floor()
 	
@@ -125,6 +129,28 @@ func _physics_process(delta):
 	else:
 		velocity.y += GRAVITY * delta
 	
+	if playernumber == 1:
+		var area2 = get_parent().area2
+		if character_coll.overlaps_area(area2):
+			const a = 3
+			const c = 1
+			const b = 2
+			const e = 3
+			var x = int(self.position.x - area2.position.x)
+			print(x)
+			var gaussian = (a * e^(-((x-b)^2) / (2*(c^2))))
+			velocity.x = gaussian
+	else:
+		var area1 = get_parent().area1
+		if character_coll.overlaps_area(area1):
+			const a = 3
+			const c = 1
+			const b = 2
+			const e = 3
+			var x = int(self.position.x - area1.position.x)
+			var gaussian = (a * e^(-((x-b)^2) / (2*(c^2))))
+			velocity.x = gaussian
+	
 	move_and_slide()
 	
 	if is_on_floor():
@@ -138,6 +164,21 @@ func _physics_process(delta):
 	animation_tree["parameters/conditions/run"] = false
 	animation_tree["parameters/conditions/backdash"] = false
 	animation_tree["parameters/conditions/in_air_dash"] = false
+
+
+# Wall Slide
+func _on_area_2d_area_entered(area):
+	var x = int(self.position.x - area.position.x)
+	const a = 3
+	const c = 1
+	const b = 2
+	const e = 3
+	var gaussian = (a * e^(-((x-b)^2) / (2*(c^2))))
+	velocity.x += 2 * facing * gaussian
+# a is max hight
+# b is 0
+# c is SD
+# e is eulers number
 
 
 # Attacks
@@ -203,7 +244,6 @@ func _on_input_controller_qcbh():
 
 func _on_input_controller_qcbm():
 	pass # Replace with function body.
-
 
 
 func test(state):

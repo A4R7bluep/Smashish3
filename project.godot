@@ -118,6 +118,11 @@ Char_Dash2={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Stage"
+2d_physics/layer_2="Player"
+
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true

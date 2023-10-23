@@ -341,6 +341,10 @@ _data = {
 }
 
 [node name="Xeaus" type="CharacterBody2D"]
+collision_layer = 0
+slide_on_ceiling = false
+wall_min_slide_angle = 0.0
+floor_stop_on_slope = false
 script = ExtResource("1_y5pna")
 
 [node name="facer" type="Node2D" parent="."]
@@ -377,7 +381,14 @@ libraries = {
 }
 
 [node name="CharacterInteraction" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(65, 0, 0, 280, -75, 0, 0, -280)
+polygon = PackedVector2Array(65, 0, 0, 280, -65, 0, 0, -280)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CharacterInteraction" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(70, 0, 0, 285, -70, 0, 0, -285)
 
 [connection signal="BACK" from="Input_Controller" to="." method="_on_input_controller_back"]
 [connection signal="DASH" from="Input_Controller" to="." method="_on_input_controller_dash"]
@@ -402,3 +413,4 @@ polygon = PackedVector2Array(65, 0, 0, 280, -75, 0, 0, -280)
 [connection signal="UP" from="Input_Controller" to="." method="_on_input_controller_up"]
 [connection signal="UP_BACK" from="Input_Controller" to="." method="_on_input_controller_up_back"]
 [connection signal="UP_FORWARD" from="Input_Controller" to="." method="_on_input_controller_up_forward"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
