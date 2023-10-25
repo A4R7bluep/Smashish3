@@ -123,6 +123,10 @@ Char_Dash2={
 2d_physics/layer_1="Stage"
 2d_physics/layer_2="Player"
 
+[physics]
+
+2d/solver/contact_max_separation=3.0
+
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true

@@ -132,24 +132,11 @@ func _physics_process(delta):
 	if playernumber == 1:
 		var area2 = get_parent().area2
 		if character_coll.overlaps_area(area2):
-			const a = 3
-			const c = 1
-			const b = 2
-			const e = 3
-			var x = int(self.position.x - area2.position.x)
-			print(x)
-			var gaussian = (a * e^(-((x-b)^2) / (2*(c^2))))
-			velocity.x = gaussian
+			velocity.x = -150 * facing
 	else:
 		var area1 = get_parent().area1
 		if character_coll.overlaps_area(area1):
-			const a = 3
-			const c = 1
-			const b = 2
-			const e = 3
-			var x = int(self.position.x - area1.position.x)
-			var gaussian = (a * e^(-((x-b)^2) / (2*(c^2))))
-			velocity.x = gaussian
+			velocity.x = -150 * facing
 	
 	move_and_slide()
 	
@@ -164,21 +151,6 @@ func _physics_process(delta):
 	animation_tree["parameters/conditions/run"] = false
 	animation_tree["parameters/conditions/backdash"] = false
 	animation_tree["parameters/conditions/in_air_dash"] = false
-
-
-# Wall Slide
-func _on_area_2d_area_entered(area):
-	var x = int(self.position.x - area.position.x)
-	const a = 3
-	const c = 1
-	const b = 2
-	const e = 3
-	var gaussian = (a * e^(-((x-b)^2) / (2*(c^2))))
-	velocity.x += 2 * facing * gaussian
-# a is max hight
-# b is 0
-# c is SD
-# e is eulers number
 
 
 # Attacks

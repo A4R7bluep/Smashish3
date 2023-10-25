@@ -1,5 +1,3 @@
 res://Characters/Xeaus/xeaus.tscn
 res://Stages/test_stage.tscn
-res://Characters/Universal/input_controller.tscn
 res://Characters/Xeaus/xeaus.gd
-res://Stages/test_stage.gd
