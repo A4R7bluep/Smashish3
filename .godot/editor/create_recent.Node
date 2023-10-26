@@ -1,7 +1,9 @@
-AnimatedSprite2D
+Node
 CollisionShape2D
 Area2D
+RemoteTransform2D
 RigidBody2D
+AnimatedSprite2D
 StaticBody2D
 Camera2D
 CollisionPolygon2D
@@ -10,5 +12,4 @@ Node3D
 Sprite2D
 AnimationPlayer
 AnimationTree
-Node
 CharacterBody2D

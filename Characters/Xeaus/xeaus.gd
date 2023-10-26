@@ -21,6 +21,9 @@ var wall_slide = false
 @onready var character_coll = $Area2D
 @onready var state_machine = animation_tree["parameters/playback"]
 
+@onready var parent = get_parent()
+@onready var attackAttr = $"../AttackAttr"
+
 
 # Movement
 func _on_input_controller_forward():
@@ -130,11 +133,11 @@ func _physics_process(delta):
 		velocity.y += GRAVITY * delta
 	
 	if playernumber == 1:
-		var area2 = get_parent().area2
+		var area2 = parent.area2
 		if character_coll.overlaps_area(area2):
 			velocity.x = -150 * facing
 	else:
-		var area1 = get_parent().area1
+		var area1 = parent.area1
 		if character_coll.overlaps_area(area1):
 			velocity.x = -150 * facing
 	
@@ -151,11 +154,16 @@ func _physics_process(delta):
 	animation_tree["parameters/conditions/run"] = false
 	animation_tree["parameters/conditions/backdash"] = false
 	animation_tree["parameters/conditions/in_air_dash"] = false
+	animation_tree["parameters/conditions/5L"] = false
 
 
 # Attacks
 func _on_input_controller_l():
-	pass # Replace with function body.
+	if is_on_floor():
+		animation_tree["parameters/conditions/5L"] = true
+		state_machine.travel("5L")
+	else:
+		pass
 
 
 func _on_input_controller_m():
@@ -218,7 +226,19 @@ func _on_input_controller_qcbm():
 	pass # Replace with function body.
 
 
+func _on_hurtbox_area_entered(area):
+	var body = area.get_parent().get_parent()
+	if body != self:
+		var bodyName = body.get_name()
+		
+		if bodyName.begins_with("Xeaus"):
+			var values = attackAttr.attack_lookup["Xeaus"][area.name]
+			print(values)
+		
+	#	print(attackAttr)
+
+
+
 func test(state):
 #	print(state)
 	pass
-

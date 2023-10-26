@@ -6,6 +6,7 @@ var area1
 var area2
 
 @onready var camera = $Camera2D
+@onready var attackAttr = $AttackAttr
 
 @onready var XeausScene = preload("res://Characters/Xeaus/xeaus.tscn")
 
