@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdi74dgms2ayr"
-path="res://.godot/imported/xeaus.png-847528d3febf1a7c0e30843da7ff38a4.ctex"
+uid="uid://bcyxig6r0twm1"
+path="res://.godot/imported/Yggdrasil_Seed_29.png-7ce685ca9b29c39749c4d54f9544ee85.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://xeaus.png"
-dest_files=["res://.godot/imported/xeaus.png-847528d3febf1a7c0e30843da7ff38a4.ctex"]
+source_file="res://Stages/Yggdrasil_Seed_29.png"
+dest_files=["res://.godot/imported/Yggdrasil_Seed_29.png-7ce685ca9b29c39749c4d54f9544ee85.ctex"]
 
 [params]
 

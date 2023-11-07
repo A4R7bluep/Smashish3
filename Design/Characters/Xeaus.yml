@@ -80,7 +80,15 @@ Win Quotes:
 
 Stage: Verdant Grove - infinite/looping?
 
-Mechanics: Blood meter - Drink dagger blood for attack boost
+Mechanics: 
+    Blood meter:
+        Description: Consumes all blood built up in the dagger
+            Pops when blood meter is full, gives a little time before taking damage from not having blood
+            Gains blood when hitting a dagger move, but not on block
+            Blood goes down over time 
+            Increases damage and defense for 3 seconds
+            Gives more block stun and a second hit that pops up, second hit works on block (stain state)
+
 
 Mechanic Overrides: |
     Air dash - Like Zato's where it allows you to fly in the air, in bat form
@@ -93,7 +101,7 @@ Moves:
 
     Pommel Bash:
         Input: 5L
-        Use: High
+        Use: fast, combo setup
 
     Dagger Stab:
         Input: 5M
@@ -106,14 +114,6 @@ Moves:
         Use: Low - Poke, trip
             Mid - Block pressure
             High - Anti-air, combo setup, flying
-
-    Sip of Blood:
-        Input: 24L
-        Description: Consumes some blood built up in the dagger
-            The blood on the dagger, shown by a blood meter, turns into particles that flies in the air
-            Works like Nago's blood but backward
-            Increases damage and defense for 3 seconds
-            Gives more block stun and a second hit that pops up, second hit works on block
 
     Crouch Kick:
         note: right foot

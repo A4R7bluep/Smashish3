@@ -1,2 +1,5 @@
-res://Characters/Xeaus/xeaus.tscn
 res://Stages/test_stage.tscn
+res://Characters/Xeaus/xeaus.tscn
+res://UX/health_ui.tscn
+res://UX/UIStages/character_select.tscn
+res://UX/UIStages/character_select.gd

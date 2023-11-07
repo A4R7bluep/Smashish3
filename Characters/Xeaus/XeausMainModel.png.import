@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c55q3djv6ssf1"
-path="res://.godot/imported/XeausMainModel.png-948bb19fef04c04d22126ea6cb5210ed.ctex"
+path="res://.godot/imported/XeausMainModel.png-5a5516f457839c8e39d49fd4c4d31224.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://XeausMainModel.png"
-dest_files=["res://.godot/imported/XeausMainModel.png-948bb19fef04c04d22126ea6cb5210ed.ctex"]
+source_file="res://Characters/Xeaus/XeausMainModel.png"
+dest_files=["res://.godot/imported/XeausMainModel.png-5a5516f457839c8e39d49fd4c4d31224.ctex"]
 
 [params]
 

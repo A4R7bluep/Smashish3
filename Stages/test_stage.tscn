@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8qr5h2xxbmfl"]
+[gd_scene load_steps=8 format=3 uid="uid://c8qr5h2xxbmfl"]
 
 [ext_resource type="Script" path="res://Stages/test_stage.gd" id="1_m701g"]
-[ext_resource type="Texture2D" uid="uid://bcyxig6r0twm1" path="res://Yggdrasil_Seed_29.png" id="1_mvuit"]
+[ext_resource type="Texture2D" uid="uid://bcyxig6r0twm1" path="res://Stages/Yggdrasil_Seed_29.png" id="2_ktn6i"]
+[ext_resource type="PackedScene" uid="uid://dsl1er40msvhu" path="res://UX/health_ui.tscn" id="2_tkt4m"]
 [ext_resource type="Script" path="res://Stages/StageItems/sideWalls.gd" id="3_05ii5"]
 [ext_resource type="Script" path="res://Stages/AttackAttr.gd" id="4_1hy2i"]
 
@@ -13,12 +14,6 @@ size = Vector2(37, 2334)
 
 [node name="TestStage" type="Node2D"]
 script = ExtResource("1_m701g")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(978, -86)
-scale = Vector2(4.14933, 4.668)
-texture = ExtResource("1_mvuit")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 freeze = true
@@ -46,6 +41,7 @@ position = Vector2(960, 540)
 contact_monitor = true
 freeze = true
 script = ExtResource("3_05ii5")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wallLeft"]
 position = Vector2(-2075, -626)
@@ -58,6 +54,7 @@ scale = Vector2(1, -1)
 contact_monitor = true
 freeze = true
 script = ExtResource("3_05ii5")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wallRight"]
 position = Vector2(-2111, -626)
@@ -81,3 +78,24 @@ shape = SubResource("RectangleShape2D_wmkih")
 
 [node name="AttackAttr" type="Node" parent="."]
 script = ExtResource("4_1hy2i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(978, -86)
+scale = Vector2(4.14933, 4.668)
+texture = ExtResource("2_ktn6i")
+metadata/_edit_lock_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource("2_tkt4m")]
+layout_direction = 2
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -960.0
+offset_top = -1080.0
+offset_right = -960.0
+offset_bottom = -1080.0
+grow_vertical = 0

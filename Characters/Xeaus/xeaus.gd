@@ -19,6 +19,7 @@ var wall_slide = false
 @onready var input_controller = $Input_Controller
 @onready var animation_tree = $AnimationTree
 @onready var character_coll = $Area2D
+@onready var stats = $StatController
 @onready var state_machine = animation_tree["parameters/playback"]
 
 @onready var parent = get_parent()
@@ -233,12 +234,17 @@ func _on_hurtbox_area_entered(area):
 		
 		if bodyName.begins_with("Xeaus"):
 			var values = attackAttr.attack_lookup["Xeaus"][area.name]
-			print(values)
+			stats.set_health(values["Damage"], playernumber)
+			velocity.x = values["KnockbackX"]
+			velocity.y = values["KnockbackY"]
 		
 	#	print(attackAttr)
 
+func _on_stat_controller_lost_round(playernumber):
+	queue_free()
 
 
 func test(state):
 #	print(state)
 	pass
+

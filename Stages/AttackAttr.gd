@@ -6,6 +6,8 @@ const attack_lookup = {
 			"AttackLvl": "light",
 			"Damage": 5,
 			"Blockstun": 3,
+			"KnockbackX": 50,
+			"KnockbackY": -500,
 		},
 	},
 }
