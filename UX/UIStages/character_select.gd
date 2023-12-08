@@ -14,6 +14,8 @@ extends Node2D
 
 var stage = preload("res://Stages/test_stage.tscn").instantiate()
 
+var done1 = false
+var done2 = false
 
 func _process(_delta):
 	var Char_Right1 = Input.get_action_strength("Char_Right1")
@@ -79,8 +81,7 @@ func _process(_delta):
 		match CurrentVector1:
 			Vector2.UP:
 				stage.char1 = "Xeaus"
-				get_tree().root.add_child(stage)
-				self.queue_free()
+				done1 = true
 			Vector2.UP + Vector2.RIGHT:
 				pass
 			Vector2.RIGHT:
@@ -99,7 +100,8 @@ func _process(_delta):
 	if Char_Light2:
 		match CurrentVector2:
 			Vector2.UP:
-				pass
+				stage.char2 = "Xeaus"
+				done2 = true
 			Vector2.UP + Vector2.RIGHT:
 				pass
 			Vector2.RIGHT:
@@ -114,3 +116,7 @@ func _process(_delta):
 				pass
 			Vector2.UP + Vector2.LEFT:
 				pass
+	
+	if done1 and done2:
+		get_tree().root.add_child(stage)
+		self.queue_free()

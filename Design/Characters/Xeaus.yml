@@ -87,7 +87,9 @@ Mechanics:
             Gains blood when hitting a dagger move, but not on block
             Blood goes down over time 
             Increases damage and defense for 3 seconds
-            Gives more block stun and a second hit that pops up, second hit works on block (stain state)
+            Gives more block stun
+            All attacks apply demonic fire state, even on block
+            When opponent in demonic fire state, on the next hit does a second hit which pops up and gives more blockstun (stain state)
 
 
 Mechanic Overrides: |
@@ -103,7 +105,8 @@ Moves:
         Input: 5L
         Use: fast, combo setup
 
-    Dagger Stab:
+    Forward Kick:
+        note: with front foot
         Input: 5M
         Use: Poke, combo setup
 
@@ -116,14 +119,13 @@ Moves:
             High - Anti-air, combo setup, flying
 
     Crouch Kick:
-        note: right foot
+        note: front foot
         Input: 2L
         Use: Low
 
-    Slash Kick:
-        note: with left foot (like Happy Chaos 6K)
+    Uppercut Slash:
         Input: 6L
-        Use: In combo
+        Use: 6p, anti air
 
     Bat Dash:
         Input: 26L, 26M, 26H
@@ -167,7 +169,7 @@ Moves:
 
     Supers:
         Super Press: Install
-            - If the dagger's blood is full, Xeaus goes into a superpowered state and does more damage (Pulls left hand out from pocket thing)
+            - If the dagger's blood is full, Xeaus goes into a superpowered state and does more damage (Pulls left hand out from pocket)
             - When used, the blood bursts into purple flames and Xeaus drinks the blood
 
         Super Execute:

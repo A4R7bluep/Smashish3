@@ -1,4 +1,7 @@
-res://Characters/Universal/input_controller.tscn::93cefee491f6ad47f96efe28087068e1::1695837126::res://.godot/exported/133200997/export-d11fa924dbe6c96d03ae517d2be0061c-input_controller.scn
-res://Characters/Xeaus/xeaus.tscn::abd7e827778efa0ee42c862acdc842dd::1695837125::res://.godot/exported/133200997/export-12fd5e9d71f7271cc25c212e33c321f4-xeaus.scn
-res://Stages/test_stage.tscn::0405def180ccd298267a2025cd3de6f2::1695837125::res://.godot/exported/133200997/export-319c7eda677d6d20fb433ad247b5f777-test_stage.scn
-res://default_env.tres::756de160834ef7cc033c2a79cd80f338::1676604982::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
+res://Characters/Universal/input_controller.tscn::93cefee491f6ad47f96efe28087068e1::1698231146::res://.godot/exported/133200997/export-d11fa924dbe6c96d03ae517d2be0061c-input_controller.scn
+res://Characters/Xeaus/xeaus.tscn::c6d0871d178c901dd158508ecb884101::1702042114::res://.godot/exported/133200997/export-12fd5e9d71f7271cc25c212e33c321f4-xeaus.scn
+res://Stages/test_stage.tscn::45456694c1feed15ed5f12ab1e64b242::1702042111::res://.godot/exported/133200997/export-319c7eda677d6d20fb433ad247b5f777-test_stage.scn
+res://default_env.tres::756de160834ef7cc033c2a79cd80f338::1676601382::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
+res://UX/UIStages/character_select.tscn::812efea5950f543f9b26352d96086c0d::1702042121::res://.godot/exported/133200997/export-0d67aed990fce80c957d0e8c32b3989c-character_select.scn
+res://UX/UIStages/win_screen.tscn::32be87528dccd7a32be6f9c45801ad72::1702042123::res://.godot/exported/133200997/export-cc0f39490b3813400aa8446babee0dc1-win_screen.scn
+res://UX/health_ui.tscn::0180f44f2f045c4bcdafc7cbdd10d1e3::1702042117::res://.godot/exported/133200997/export-85c3fce357ab704f94488c99b045b7b3-health_ui.scn

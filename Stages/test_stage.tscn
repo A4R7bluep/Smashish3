@@ -38,8 +38,8 @@ remote_path = NodePath("../../StaticBody2D2")
 
 [node name="wallLeft" type="RigidBody2D" parent="."]
 position = Vector2(960, 540)
-contact_monitor = true
 freeze = true
+contact_monitor = true
 script = ExtResource("3_05ii5")
 metadata/_edit_lock_ = true
 
@@ -51,8 +51,8 @@ shape = SubResource("RectangleShape2D_wmkih")
 position = Vector2(960, 540)
 rotation = 3.14159
 scale = Vector2(1, -1)
-contact_monitor = true
 freeze = true
+contact_monitor = true
 script = ExtResource("3_05ii5")
 metadata/_edit_lock_ = true
 

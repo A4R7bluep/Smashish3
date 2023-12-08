@@ -13,6 +13,7 @@ var area2
 var winScreen = preload("res://UX/UIStages/win_screen.tscn").instantiate()
 
 var char1 = ""
+var char2 = ""
 
 func _ready():
 	print(char1)

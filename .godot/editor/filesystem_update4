@@ -1,4 +1,6 @@
 res://Stages/test_stage.tscn
+res://Characters/Xeaus/demonfire.gdshader
 res://Characters/Xeaus/xeaus.tscn
 res://UX/health_ui.tscn
 res://UX/UIStages/character_select.tscn
+res://UX/UIStages/win_screen.tscn

@@ -43,6 +43,7 @@ signal UP
 signal UP_FORWARD
 signal UP_BACK
 signal DOWN
+signal DOWN_BACK
 signal FORWARD
 signal BACK
 signal DASH
@@ -52,6 +53,8 @@ var inputTime = inputTimeDefault
 var inputBuffer = []
 
 var playernumber
+
+var CurrentVector = Vector2.ZERO
 
 var inputTree = {
 	"(1, 0)": {
@@ -187,15 +190,13 @@ func _process(delta):
 	var Char_Down = Input.get_action_strength(down)
 	var Char_Up = Input.get_action_strength(up)
 	
-	var Char_Light = Input.is_action_pressed(light)
-	var Char_Med = Input.is_action_pressed(med)
-	var Char_Heavy = Input.is_action_pressed(heavy)
-	var Char_Sys = Input.is_action_pressed(sys)
+	var Char_Light = Input.is_action_just_pressed(light)
+	var Char_Med = Input.is_action_just_pressed(med)
+	var Char_Heavy = Input.is_action_just_pressed(heavy)
+	var Char_Sys = Input.is_action_just_pressed(sys)
 	var Char_Dash = Input.is_action_pressed(dash)
 	
 	var facing = get_parent().facing
-	
-	var CurrentVector = Vector2.ZERO
 	
 	
 	CurrentVector = Vector2((Char_Right - Char_Left) * facing, Char_Up - Char_Down)
@@ -215,28 +216,28 @@ func _process(delta):
 	if CurrentVector.y == -1:
 		emit_signal("DOWN")
 	
-	if Char_Light:
+	if Char_Light and not Char_Dash:
 		inputBuffer.append("L")
 		var command = navigate_tree("L")
 		emit_signal(str(command))
 		inputBuffer = []
 		inputTime = inputTimeDefault
 	
-	if Char_Med:
+	if Char_Med and not Char_Dash:
 		inputBuffer.append("M")
 		var command = navigate_tree("M")
 		emit_signal(str(command))
 		inputBuffer = []
 		inputTime = inputTimeDefault
 	
-	if Char_Heavy:
+	if Char_Heavy and not Char_Dash:
 		inputBuffer.append("H")
 		var command = navigate_tree("H")
 		emit_signal(str(command))
 		inputBuffer = []
 		inputTime = inputTimeDefault
 	
-	if Char_Sys:
+	if Char_Sys and not Char_Dash:
 		inputBuffer.append("S")
 		var command = navigate_tree("S")
 		emit_signal(str(command))
