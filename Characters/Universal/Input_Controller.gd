@@ -200,7 +200,7 @@ func _process(delta):
 	
 	
 	CurrentVector = Vector2((Char_Right - Char_Left) * facing, Char_Up - Char_Down)
-	CurrentVector.x *= facing
+	#CurrentVector.x *= facing
 	
 	
 	if CurrentVector.y == 1 and CurrentVector.x == 1:

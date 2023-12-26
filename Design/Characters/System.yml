@@ -29,7 +29,7 @@ Mechanics:
     Meter:
         Pressing the parry button gives you 4 frames of parry hit detection, if hit you don't take any damage,
             Opponent gets launched so you can combo off of it or it knocks down
-            Parrying uses 1/4 meter
+            Parrying uses 25% meter
         Super press, does a lot of damage at once, uses 50% meter
         Super execute, does a lot of damage at once and more when pressed with the right timing, uses 75% meter
         Attack canceled attacks, uses 25% meter

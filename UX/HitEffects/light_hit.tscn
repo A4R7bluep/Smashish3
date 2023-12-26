@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl8sgoipoq3py"]
+
+[ext_resource type="Script" path="res://UX/HitEffects/hit_effect.gd" id="1_3lu2k"]
+[ext_resource type="Texture2D" uid="uid://bxeneas8bvm4y" path="res://UX/HitEffects/particle.png" id="1_c7a48"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oorc3"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+inherit_velocity_ratio = 1.0
+spread = 180.0
+initial_velocity_min = 175.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 250, 0)
+
+[node name="LightHit" type="Node2D"]
+script = ExtResource("1_3lu2k")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_oorc3")
+texture = ExtResource("1_c7a48")
+one_shot = true
+explosiveness = 1.0
+visibility_rect = Rect2(-32, -32, 64, 64)
+
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]

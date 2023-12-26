@@ -1,4 +1,7 @@
 CollisionShape2D
+Line2D
+GPUParticles3D
+GPUParticles2D
 Area2D
 Label
 Node
@@ -9,9 +12,3 @@ RigidBody2D
 AnimatedSprite2D
 StaticBody2D
 Camera2D
-CollisionPolygon2D
-Node2D
-Node3D
-AnimationPlayer
-AnimationTree
-CharacterBody2D

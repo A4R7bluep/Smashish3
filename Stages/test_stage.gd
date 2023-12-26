@@ -8,6 +8,7 @@ var area2
 @onready var camera = $Camera2D
 @onready var attackAttr = $AttackAttr
 @onready var healthui = $"CanvasLayer/HealthUI"
+@onready var canvas_layer = $CanvasLayer
 
 @onready var XeausScene = preload("res://Characters/Xeaus/xeaus.tscn")
 var winScreen = preload("res://UX/UIStages/win_screen.tscn").instantiate()
@@ -16,6 +17,7 @@ var char1 = ""
 var char2 = ""
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	print(char1)
 	
 	var myXeaus1 = XeausScene.instantiate()
@@ -35,6 +37,8 @@ func _ready():
 	area2 = xeaus2.character_coll
 	xeaus1.stats.updateHealth.connect(set_health_ui)
 	xeaus2.stats.updateHealth.connect(set_health_ui)
+	xeaus1.stats.updateMeter.connect(set_meter_ui)
+	xeaus2.stats.updateMeter.connect(set_meter_ui)
 	xeaus1.stats.lostRound.connect(round_end)
 	xeaus2.stats.lostRound.connect(round_end)
 
@@ -54,22 +58,32 @@ func _process(delta):
 	camera.position.y = ((xeaus1.position.y + xeaus2.position.y) / 2) - 100
 
 func return_other_player(playernumber):
-	if playernumber == 1:
-		return xeaus2
-	else:
-		return xeaus1
+	match playernumber:
+		1:
+			return xeaus2
+		2:
+			return xeaus1
 
 func set_health_ui(health, playernumber):
-	if playernumber == 1:
-		healthui.set_health_1(health)
-	else:
-		healthui.set_health_2(health)
+	match playernumber:
+		1:
+			healthui.set_health_1(health)
+		2:
+			healthui.set_health_2(health)
+
+func set_meter_ui(meter, playernumber):
+	match playernumber:
+		1:
+			healthui.set_meter_1(meter)
+		2:
+			healthui.set_meter_2(meter)
 
 func round_end(playernumber):
-	if playernumber == 1:
-		winScreen.winNumber = 2
-	else:
-		winScreen.winNumber = 1
+	match playernumber:
+		1:
+			winScreen.winNumber = 2
+		2:
+			winScreen.winNumber = 1
 	
 	get_tree().root.add_child(winScreen)
 	self.queue_free()

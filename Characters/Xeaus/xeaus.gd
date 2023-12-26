@@ -21,6 +21,7 @@ var wall_slide = false
 @onready var character_coll = $Area2D
 @onready var stats = $StatController
 @onready var state_machine = animation_tree["parameters/playback"]
+var light_hit = preload("res://UX/HitEffects/light_hit.tscn")
 
 @onready var parent = get_parent()
 @onready var attackAttr = $"../AttackAttr"
@@ -43,39 +44,38 @@ var combo_hits = 0
 
 # Movement
 func _on_input_controller_forward():
-	if is_on_floor():
-		velocity.x = WALK_SPEED
+	if is_on_floor() and (idle or walk_forward) and not (run or backdash):
+		velocity.x = WALK_SPEED * facing
 		#animation_tree["parameters/conditions/walk_forward"] = true
 		walk_forward = true
-		state_machine.travel("walk_forward")
+		#state_machine.travel("walk_forward")
+		animation_tree["parameters/walkforward/playback"].travel("walk_forward")
 
 
 func _on_input_controller_back():
-	if is_on_floor():
-		velocity.x = WALK_SPEED * -0.8
+	if is_on_floor() and (idle or walk_backward) and not (run or backdash):
+		velocity.x = WALK_SPEED * -0.8 * facing
 		#animation_tree["parameters/conditions/walk_backward"] = true
 		walk_backward = true
-		state_machine.travel("walk_backward")
+		blocking = true
+		#state_machine.travel("walk_backward")
+		animation_tree["parameters/walkbackward/playback"].travel("walk_backward")
 
 
 func _on_input_controller_down():
-	if is_on_floor():
+	if is_on_floor() and not (backdash or run):
 		velocity.x = 0
 		crouch = true
-		idle = false
-		#animation_tree["parameters/conditions/crouch"] = true
-		state_machine.travel("crouch")
-
+		#idle = false
+		animation_tree["parameters/crouch/playback"].travel("crouch")
 
 func _on_input_controller_down_back():
-	if is_on_floor():
+	if is_on_floor() and not backdash:
 		velocity.x = 0
 		crouch = true
 		blocking = true
-		idle = false
-		#animation_tree["parameters/conditions/crouch"] = true
-		state_machine.travel("crouch_block")
-
+		#idle = false
+		animation_tree["parameters/crouchblock/playback"].travel("crouch_block")
 
 func _on_input_controller_up():
 	if is_on_floor() and not attack:
@@ -85,7 +85,7 @@ func _on_input_controller_up():
 
 func _on_input_controller_up_forward():
 	if jump_lock != -1:
-		velocity.x = RUN_SPEED
+		velocity.x = RUN_SPEED * facing
 	if is_on_floor():
 		velocity.y = JUMP_SPEED
 		state_machine.travel("jump")
@@ -94,7 +94,7 @@ func _on_input_controller_up_forward():
 
 func _on_input_controller_up_back():
 	if jump_lock != 1:
-		velocity.x = -RUN_SPEED
+		velocity.x = -RUN_SPEED * facing
 	if is_on_floor():
 		velocity.y = JUMP_SPEED
 		state_machine.travel("jump")
@@ -102,22 +102,28 @@ func _on_input_controller_up_back():
 
 
 func _on_input_controller_dash(direction):
-	if is_on_floor():
+	if is_on_floor() and idle:
 		if direction.x == -1:
-			velocity.x = -RUN_SPEED
+			velocity.x = -RUN_SPEED * facing
 			backdash = true
-			state_machine.travel("backdash")
+			walk_backward = false
+			#state_machine.travel("backdash")
+			animation_tree["parameters/backdash/playback"].travel("backdash")
 		elif direction.x == 0:
 			velocity.x = RUN_SPEED * facing
 			run = true
-			state_machine.travel("run")
+			walk_forward = false
+			#state_machine.travel("run")
+			animation_tree["parameters/run/playback"].travel("run")
 		elif not animation_tree["parameters/conditions/crouch"]:
-			velocity.x = RUN_SPEED
+			velocity.x = RUN_SPEED * facing
 			run = true
-			state_machine.travel("run")
-	else:
+			walk_forward = false
+			#state_machine.travel("run")
+			animation_tree["parameters/run/playback"].travel("run")
+	elif not is_on_floor():
 		if direction.x == -1:
-			velocity.x = -RUN_SPEED * 1.5
+			velocity.x = -RUN_SPEED * 1.5 * facing
 			velocity.y = 0
 			dash_fall_speed = 5
 			air_dash = true
@@ -129,7 +135,7 @@ func _on_input_controller_dash(direction):
 			air_dash = true
 			state_machine.travel("air_dash")
 		else:
-			velocity.x = RUN_SPEED * 1.5
+			velocity.x = RUN_SPEED * 1.5 * facing
 			velocity.y = 0
 			dash_fall_speed = 5
 			air_dash = true
@@ -185,8 +191,8 @@ func _physics_process(delta):
 
 # Attacks
 func _on_input_controller_l():
-	if is_on_floor():
-		animation_tree["parameters/conditions/attack"] = true
+	if is_on_floor() and idle:
+		#animation_tree["parameters/conditions/attack"] = true
 		attack = true
 		state_machine.travel("5L")
 	else:
@@ -194,8 +200,9 @@ func _on_input_controller_l():
 
 
 func _on_input_controller_m():
-	if is_on_floor():
-		animation_tree["parameters/conditions/attack"] = true
+	if is_on_floor() and idle:
+		#animation_tree["parameters/conditions/attack"] = true
+		attack = true
 		state_machine.travel("5M")
 	else:
 		pass
@@ -258,6 +265,15 @@ func _on_input_controller_qcbm():
 
 
 func reset_values():
+	if idle:
+		walk_backward = false
+		walk_forward = false
+		crouch = false
+		run = false
+		backdash = false
+		air_dash = false
+		blocking = false
+	
 	animation_tree["parameters/conditions/walk_backward"] = walk_backward
 	animation_tree["parameters/conditions/walk_forward"] = walk_forward
 	animation_tree["parameters/conditions/crouch"] = crouch
@@ -275,23 +291,30 @@ func reset_values():
 
 func _on_hurtbox_area_entered(area):
 	var body = area.get_parent().get_parent()
+	# use find parent
 	if body != self:
 		var bodyName = body.get_name()
 		
 		if bodyName.begins_with("Xeaus"):
 			var values = attackAttr.attack_lookup["Xeaus"][area.name]
-			var damage_taken = values["Damage"] - min(values["Damage"] * combo_hits * combo_scaling, values["Damage"])
+			var combo_decay = min(values["Damage"] * combo_hits * combo_scaling, values["Damage"])
+			var damage_taken = values["Damage"] - combo_decay
 			
 			if blocking:
 				print("blocked")
 			elif not damage_taken == 0:
+				var hit_effect = light_hit.instantiate()
+				hit_effect.position.x = (self.global_position.x + area.global_position.x) / 1.85
+				hit_effect.position.y = area.global_position.y
+				#hit_effect.position = area.global_position
+				parent.add_child(hit_effect)
+				
 				stats.set_health(damage_taken, playernumber)
+				stats.set_meter(1, playernumber)
 				velocity.x = values["KnockbackX"] * -facing
 				velocity.y = values["KnockbackY"]
 		
 		combo_hits += 1
-		
-	#	print(attackAttr)
 
 func _on_hitbox_body_entered(body):
 	pass
