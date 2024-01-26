@@ -7,7 +7,7 @@ const attack_lookup = {
 			"Damage": 5,
 			"Blockstun": 3,
 			"KnockbackX": 50,
-			"KnockbackY": -1000,
+			"KnockbackY": -700,
 		},
 		"5M": {
 			"AttackLvl": "light",
@@ -15,6 +15,25 @@ const attack_lookup = {
 			"Blockstun": 5,
 			"KnockbackX": 500,
 			"KnockbackY": -500,
-		}
+		},
+		"6M": {
+			"AttackLvl": "medium",
+			"Damage": 13,
+			"Blockstun": 5,
+			"KnockbackX": 100,
+			"KnockbackY": -500,
+		},
+		"ForwardThrow": {
+			"AttackLvl": "throw",
+			"Damage": 0,
+			"KnockbackX": 1000,
+			"KnockbackY": -500,
+		},
+		"BackThrow": {
+			"AttackLvl": "backthrow",
+			"Damage": 0,
+			"KnockbackX": 1000,
+			"KnockbackY": -500,
+		},
 	},
 }

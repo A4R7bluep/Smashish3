@@ -247,7 +247,10 @@ func _process(delta):
 	if Char_Dash:
 		emit_signal("DASH", CurrentVector)
 	
-	if inputBuffer.back() == null or inputBuffer.back() != CurrentVector:
+	if len(inputBuffer) == 0:
+		inputBuffer.append(CurrentVector)
+		inputTime = inputTimeDefault
+	elif inputBuffer.back() == null or inputBuffer.back() != CurrentVector:
 		inputBuffer.append(CurrentVector)
 		inputTime = inputTimeDefault
 	

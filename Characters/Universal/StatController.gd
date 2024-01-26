@@ -1,17 +1,21 @@
 extends Node
 
-var full_health = 100
-var health = 100
-var meter = 0
+@export var full_health = 1000
+@export var health = 0
+@export var meter = 0
 @export var defense = 0
 
 signal updateHealth(health, playernumber)
 signal updateMeter(meter, playernumber)
 signal lostRound(playernumber)
 
+func _ready():
+	health = full_health
+
 func set_health(value, playernumber):
 	health -= value
 	emit_signal("updateHealth", health, playernumber)
+	print(health)
 	if health <= 0:
 		emit_signal("lostRound", playernumber)
 

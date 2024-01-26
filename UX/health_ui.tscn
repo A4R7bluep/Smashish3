@@ -1,8 +1,116 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsl1er40msvhu"]
+[gd_scene load_steps=24 format=3 uid="uid://dsl1er40msvhu"]
 
-[ext_resource type="Texture2D" uid="uid://bxuj00e2f7vg1" path="res://UX/HealthBar.png" id="1_3514r"]
 [ext_resource type="Script" path="res://UX/health_ui.gd" id="1_lg7o5"]
-[ext_resource type="Texture2D" uid="uid://c6ts2bnutr254" path="res://UX/PissMeter.png" id="3_x7om1"]
+[ext_resource type="Texture2D" uid="uid://bkwv2f38fntfh" path="res://UX/HUDTextures/RoundStockFull.png" id="2_haehr"]
+[ext_resource type="Texture2D" uid="uid://dksgx7efjtue2" path="res://UX/HUDTextures/RoundStockEmpty.png" id="2_y05a7"]
+
+[sub_resource type="Gradient" id="Gradient_acd4a"]
+colors = PackedColorArray(0.533333, 0.533333, 0.533333, 1, 0.533333, 0.533333, 0.533333, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bn182"]
+gradient = SubResource("Gradient_acd4a")
+width = 700
+height = 40
+
+[sub_resource type="Gradient" id="Gradient_1m4e8"]
+colors = PackedColorArray(0.454902, 0.145098, 0.145098, 1, 0.301961, 0.0980392, 0.0980392, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tnpfm"]
+gradient = SubResource("Gradient_1m4e8")
+width = 700
+height = 40
+
+[sub_resource type="Gradient" id="Gradient_jbucm"]
+colors = PackedColorArray(0.188235, 0.188235, 0.611765, 1, 0.117647, 0.117647, 0.384314, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oy2rv"]
+gradient = SubResource("Gradient_jbucm")
+width = 700
+height = 40
+
+[sub_resource type="Animation" id="Animation_4gr0w"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ohn7m"]
+resource_name = "combo_finished"
+length = 0.75
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ComboHealth1:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p8kqv"]
+_data = {
+"RESET": SubResource("Animation_4gr0w"),
+"combo_finished": SubResource("Animation_ohn7m")
+}
+
+[sub_resource type="Gradient" id="Gradient_nuawm"]
+colors = PackedColorArray(0.533333, 0.533333, 0.533333, 1, 0.533333, 0.533333, 0.533333, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c0kdv"]
+gradient = SubResource("Gradient_nuawm")
+width = 700
+height = 40
+
+[sub_resource type="Gradient" id="Gradient_yjyh4"]
+colors = PackedColorArray(0.454902, 0.145098, 0.145098, 1, 0.301961, 0.0980392, 0.0980392, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_icaju"]
+gradient = SubResource("Gradient_yjyh4")
+width = 700
+height = 40
+
+[sub_resource type="Gradient" id="Gradient_b6v83"]
+colors = PackedColorArray(0.188235, 0.188235, 0.611765, 1, 0.117647, 0.117647, 0.384314, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cty1v"]
+gradient = SubResource("Gradient_b6v83")
+width = 700
+height = 40
+
+[sub_resource type="Animation" id="Animation_uhbe5"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ii142"]
+resource_name = "combo_finished"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ComboHealth2:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bssd5"]
+_data = {
+"RESET": SubResource("Animation_uhbe5"),
+"combo_finished": SubResource("Animation_ii142")
+}
+
+[sub_resource type="Gradient" id="Gradient_rrnvt"]
+colors = PackedColorArray(0.2, 0.8, 1, 1, 0, 0.6, 0.8, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_twvl5"]
+gradient = SubResource("Gradient_rrnvt")
+width = 400
+height = 40
 
 [node name="HealthUI" type="Control"]
 layout_mode = 3
@@ -14,39 +122,112 @@ grow_vertical = 2
 script = ExtResource("1_lg7o5")
 metadata/_edit_lock_ = true
 
-[node name="Player1Health" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(250, 64)
-texture = ExtResource("1_3514r")
-centered = false
+[node name="Player1Health" type="Node2D" parent="."]
+position = Vector2(140, 64)
 metadata/_edit_lock_ = true
 
-[node name="Player2Health" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(1670, 64)
-texture = ExtResource("1_3514r")
-centered = false
-offset = Vector2(-400, 0)
+[node name="ComboHealth1" type="TextureProgressBar" parent="Player1Health"]
+offset_left = 2.0
+offset_right = 402.0
+offset_bottom = 40.0
+step = 0.1
+value = 100.0
+fill_mode = 1
+texture_under = SubResource("GradientTexture2D_bn182")
+texture_progress = SubResource("GradientTexture2D_tnpfm")
 metadata/_edit_lock_ = true
 
-[node name="Player1Meter" type="Sprite2D" parent="."]
-texture_filter = 1
-texture_repeat = 2
+[node name="Health1" type="TextureProgressBar" parent="Player1Health"]
+offset_left = 2.0
+offset_right = 402.0
+offset_bottom = 40.0
+step = 0.1
+value = 100.0
+fill_mode = 1
+texture_progress = SubResource("GradientTexture2D_oy2rv")
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer1" type="AnimationPlayer" parent="Player1Health"]
+libraries = {
+"": SubResource("AnimationLibrary_p8kqv")
+}
+
+[node name="Player2Health" type="Node2D" parent="."]
+position = Vector2(1770, 64)
+scale = Vector2(-1, 1)
+metadata/_edit_lock_ = true
+
+[node name="ComboHealth2" type="TextureProgressBar" parent="Player2Health"]
+offset_left = 2.0
+offset_right = 402.0
+offset_bottom = 40.0
+step = 0.1
+value = 100.0
+fill_mode = 1
+texture_under = SubResource("GradientTexture2D_c0kdv")
+texture_progress = SubResource("GradientTexture2D_icaju")
+metadata/_edit_lock_ = true
+
+[node name="Health2" type="TextureProgressBar" parent="Player2Health"]
+offset_left = 2.0
+offset_right = 402.0
+offset_bottom = 40.0
+step = 0.1
+value = 100.0
+fill_mode = 1
+texture_progress = SubResource("GradientTexture2D_cty1v")
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Player2Health"]
+libraries = {
+"": SubResource("AnimationLibrary_bssd5")
+}
+
+[node name="Player1Meter" type="Node2D" parent="."]
 position = Vector2(250, 1000)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_x7om1")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 0, 80)
 metadata/_edit_lock_ = true
 
-[node name="Player2Meter" type="Sprite2D" parent="."]
-texture_filter = 1
+[node name="Meter1" type="TextureProgressBar" parent="Player1Meter"]
+offset_right = 400.0
+offset_bottom = 40.0
+fill_mode = 1
+texture_progress = SubResource("GradientTexture2D_twvl5")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Player2Meter" type="Node2D" parent="."]
 position = Vector2(1670, 1000)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_x7om1")
-centered = false
-offset = Vector2(-800, 0)
-region_enabled = true
-region_rect = Rect2(0, 0, 0, 80)
+scale = Vector2(-1, 1)
+metadata/_edit_lock_ = true
+
+[node name="Meter2" type="TextureProgressBar" parent="Player2Meter"]
+offset_right = 400.0
+offset_bottom = 40.0
+fill_mode = 1
+texture_progress = SubResource("GradientTexture2D_twvl5")
+metadata/_edit_lock_ = true
+
+[node name="Player1Rounds" type="Node2D" parent="."]
+position = Vector2(840, 125)
+scale = Vector2(-1, 1)
+metadata/_edit_lock_ = true
+
+[node name="RoundStocks1" type="TextureProgressBar" parent="Player1Rounds"]
+offset_right = 60.0
+offset_bottom = 30.0
+max_value = 2.0
+texture_under = ExtResource("2_y05a7")
+texture_progress = ExtResource("2_haehr")
+metadata/_edit_lock_ = true
+
+[node name="Player2Rounds" type="Node2D" parent="."]
+position = Vector2(1070, 125)
+metadata/_edit_lock_ = true
+
+[node name="RoundStocks2" type="TextureProgressBar" parent="Player2Rounds"]
+offset_right = 60.0
+offset_bottom = 30.0
+max_value = 2.0
+texture_under = ExtResource("2_y05a7")
+texture_progress = ExtResource("2_haehr")
 metadata/_edit_lock_ = true

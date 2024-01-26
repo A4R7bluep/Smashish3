@@ -21,13 +21,15 @@ var wall_slide = false
 @onready var character_coll = $Area2D
 @onready var stats = $StatController
 @onready var state_machine = animation_tree["parameters/playback"]
+@onready var global = get_node("/root/Global")
 var light_hit = preload("res://UX/HitEffects/light_hit.tscn")
 
 @onready var parent = get_parent()
 @onready var attackAttr = $"../AttackAttr"
 
 # Damage Scaling
-@export var combo_scaling = 0.25
+@export var combo_scaling = 0.125
+var combo_damage = 0
 var combo_hits = 0
 
 # States
@@ -39,7 +41,14 @@ var combo_hits = 0
 @export var air_dash = false
 @export var attack = false
 @export var blocking = false
+@export var throw = false
 @export var idle = true
+@export var gravity_lock = false
+
+signal health_changed(damage, combo, playernumber)
+signal meter_changed(meterAdded, playernumber)
+signal combo_finished(playernumber)
+signal set_full_health(fullhealth, playernumber)
 
 
 # Movement
@@ -142,53 +151,6 @@ func _on_input_controller_dash(direction):
 			state_machine.travel("air_dash")
 
 
-func _ready():
-	set_name("Xeaus" + str(playernumber))
-	input_controller.playernumber = playernumber
-
-# Physics process
-func _physics_process(delta):
-	if facing == 1:
-		facer.scale.y = 1
-		facer.rotation_degrees = 0
-	elif facing == -1:
-		facer.scale.y = -1
-		facer.rotation_degrees = 180
-	
-	animation_tree["parameters/conditions/on_ground"] = is_on_floor()
-	animation_tree["parameters/conditions/in_air"] = not is_on_floor()
-	
-	if not is_on_floor() and velocity.y > 0:
-		animation_tree["parameters/conditions/is_falling"] = true
-	elif is_on_floor():
-		animation_tree["parameters/conditions/is_falling"] = false
-#	elif is_on_floor():
-#		animation_tree["parameters/conditions/idle"] = true
-	
-	if velocity.y > 0:
-		velocity.y += (GRAVITY / dash_fall_speed) * delta
-	else:
-		velocity.y += GRAVITY * delta
-	
-	if playernumber == 1:
-		var area2 = parent.area2
-		if character_coll.overlaps_area(area2):
-			velocity.x = -150 * facing
-	else:
-		var area1 = parent.area1
-		if character_coll.overlaps_area(area1):
-			velocity.x = -150 * facing
-	
-	move_and_slide()
-	
-	if is_on_floor():
-		velocity.x = 0
-	
-	dash_fall_speed = 1
-	
-	reset_values()
-
-
 # Attacks
 func _on_input_controller_l():
 	if is_on_floor() and idle:
@@ -217,7 +179,12 @@ func _on_input_controller_normal_2m():
 
 
 func _on_input_controller_normal_6m():
-	pass # Replace with function body.
+	if is_on_floor() and idle:
+		#animation_tree["parameters/conditions/attack"] = true
+		attack = true
+		state_machine.travel("6M")
+	else:
+		pass
 
 
 func _on_input_controller_normal_4m():
@@ -264,6 +231,70 @@ func _on_input_controller_qcbm():
 	pass # Replace with function body.
 
 
+func _on_input_controller_normal_6s():
+	if is_on_floor() and (idle or walk_forward):
+		throw = true
+		state_machine.travel("throw")
+	else:
+		pass
+
+
+func _on_input_controller_normal_4s():
+	if is_on_floor() and (idle or walk_backward):
+		throw = true
+		state_machine.travel("backthrow")
+	else:
+		pass
+
+
+func _ready():
+	set_name("Xeaus" + str(playernumber))
+	input_controller.playernumber = playernumber
+	parent.healthui.connect_signals(self)
+	set_full_health.emit(stats.full_health, playernumber)
+
+# Physics process
+func _physics_process(delta):
+	if facing == 1:
+		facer.scale.y = 1
+		facer.rotation_degrees = 0
+	elif facing == -1:
+		facer.scale.y = -1
+		facer.rotation_degrees = 180
+	
+	animation_tree["parameters/conditions/on_ground"] = is_on_floor()
+	animation_tree["parameters/conditions/in_air"] = not is_on_floor()
+	
+	if not is_on_floor() and velocity.y > 0:
+		animation_tree["parameters/conditions/is_falling"] = true
+	elif is_on_floor():
+		animation_tree["parameters/conditions/is_falling"] = false
+	
+	if velocity.y > 0:
+		velocity.y += (GRAVITY / dash_fall_speed) * delta
+	else:
+		velocity.y += GRAVITY * delta
+	
+	if playernumber == 1:
+		var area2 = parent.area2
+		if character_coll.overlaps_area(area2):
+			velocity.x = -150 * facing
+	else:
+		var area1 = parent.area1
+		if character_coll.overlaps_area(area1):
+			velocity.x = -150 * facing
+	
+	if (not attack) or (gravity_lock):
+		move_and_slide()
+	
+	if is_on_floor():
+		velocity.x = 0
+	
+	dash_fall_speed = 1
+	
+	reset_values()
+
+
 func reset_values():
 	if idle:
 		walk_backward = false
@@ -273,6 +304,8 @@ func reset_values():
 		backdash = false
 		air_dash = false
 		blocking = false
+		throw = false
+		gravity_lock = false
 	
 	animation_tree["parameters/conditions/walk_backward"] = walk_backward
 	animation_tree["parameters/conditions/walk_forward"] = walk_forward
@@ -282,11 +315,14 @@ func reset_values():
 	animation_tree["parameters/conditions/backdash"] = backdash
 	animation_tree["parameters/conditions/air_dash"] = air_dash
 	animation_tree["parameters/conditions/attack"] = attack
-	#animation_tree["parameters/conditions/block"] = false
+	animation_tree["parameters/conditions/throw"] = throw
 	animation_tree["parameters/conditions/idle"] = idle
+	animation_tree["parameters/conditions/thrown"] = gravity_lock
 	
-	if is_on_floor():
+	if is_on_floor() and combo_hits > 0:
 		combo_hits = 0
+		combo_damage = 0
+		combo_finished.emit(playernumber)
 
 
 func _on_hurtbox_area_entered(area):
@@ -299,22 +335,50 @@ func _on_hurtbox_area_entered(area):
 			var values = attackAttr.attack_lookup["Xeaus"][area.name]
 			var combo_decay = min(values["Damage"] * combo_hits * combo_scaling, values["Damage"])
 			var damage_taken = values["Damage"] - combo_decay
+			var hitbox = area.get_node("CollisionShape2D")
 			
-			if blocking:
-				print("blocked")
-			elif not damage_taken == 0:
-				var hit_effect = light_hit.instantiate()
-				hit_effect.position.x = (self.global_position.x + area.global_position.x) / 1.85
-				hit_effect.position.y = area.global_position.y
-				#hit_effect.position = area.global_position
-				parent.add_child(hit_effect)
-				
-				stats.set_health(damage_taken, playernumber)
-				stats.set_meter(1, playernumber)
+			if values["AttackLvl"] == "throw":
+				gravity_lock = true
+				idle = false
+				state_machine.travel("thrown")
+				self.global_position = hitbox.global_position
 				velocity.x = values["KnockbackX"] * -facing
 				velocity.y = values["KnockbackY"]
-		
+			elif values["AttackLvl"] == "backthrow":
+				var other_char = parent.return_other_player(playernumber)
+				var x = hitbox.global_position.x - other_char.global_position.x
+				global_position.x = -x
+				global_position.y = hitbox.global_position.y
+				
+				facing *= -facing
+				gravity_lock = true
+				idle = false
+				state_machine.travel("thrown")
+				self.global_position = hitbox.global_position
+				velocity.x = values["KnockbackX"] * -facing
+				velocity.y = values["KnockbackY"]
+				print("backthrow")
+			else:
+				if blocking:
+					print("blocked")
+				elif not damage_taken == 0:
+					combo_damage += damage_taken
+					
+					var hit_effect = light_hit.instantiate()
+					hit_effect.position.x = (self.global_position.x + hitbox.global_position.x) / 1.85
+					hit_effect.position.y = hitbox.global_position.y
+					#hit_effect.position = area.global_position
+					parent.add_child(hit_effect)
+					
+					stats.set_health(damage_taken, playernumber)
+					stats.set_meter(100, playernumber)
+					health_changed.emit(damage_taken, combo_damage, playernumber)
+					meter_changed.emit(5, playernumber)
+					velocity.x = values["KnockbackX"] * -facing
+					velocity.y = values["KnockbackY"]
+				
 		combo_hits += 1
+
 
 func _on_hitbox_body_entered(body):
 	pass
@@ -326,4 +390,3 @@ func test(state):
 	#if get_name() == "Xeaus1":
 		#print(state)
 	pass
-
