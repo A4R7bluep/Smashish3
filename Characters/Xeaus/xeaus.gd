@@ -28,6 +28,7 @@ var light_hit = preload("res://UX/HitEffects/light_hit.tscn")
 @onready var attackAttr = $"../AttackAttr"
 
 # Damage Scaling
+@export var fullhealth = 300
 @export var combo_scaling = 0.125
 var combo_damage = 0
 var combo_hits = 0
@@ -36,6 +37,7 @@ var combo_hits = 0
 @export var walk_backward = false
 @export var walk_forward = false
 @export var crouch = false
+@export var crouchblock = false
 @export var run = false
 @export var backdash = false
 @export var air_dash = false
@@ -44,6 +46,8 @@ var combo_hits = 0
 @export var throw = false
 @export var idle = true
 @export var gravity_lock = false
+
+var framelock = false
 
 signal health_changed(damage, combo, playernumber)
 signal meter_changed(meterAdded, playernumber)
@@ -57,8 +61,8 @@ func _on_input_controller_forward():
 		velocity.x = WALK_SPEED * facing
 		#animation_tree["parameters/conditions/walk_forward"] = true
 		walk_forward = true
-		#state_machine.travel("walk_forward")
-		animation_tree["parameters/walkforward/playback"].travel("walk_forward")
+		#animation_tree["parameters/walkforward/playback"].travel("walkforward")
+		state_machine.travel("walkforward")
 
 
 func _on_input_controller_back():
@@ -67,24 +71,42 @@ func _on_input_controller_back():
 		#animation_tree["parameters/conditions/walk_backward"] = true
 		walk_backward = true
 		blocking = true
-		#state_machine.travel("walk_backward")
-		animation_tree["parameters/walkbackward/playback"].travel("walk_backward")
+		reset_values()
+		#animation_tree["parameters/walkbackward/playback"].travel("walkbackward")
+		state_machine.travel("walkbackward")
 
 
 func _on_input_controller_down():
 	if is_on_floor() and not (backdash or run):
 		velocity.x = 0
 		crouch = true
-		#idle = false
+		idle = false
+		blocking = false
+		reset_values()
+		state_machine.travel("crouch")
 		animation_tree["parameters/crouch/playback"].travel("crouch")
+
 
 func _on_input_controller_down_back():
 	if is_on_floor() and not backdash:
 		velocity.x = 0
 		crouch = true
 		blocking = true
-		#idle = false
+		idle = false
+		state_machine.travel("crouchblock")
 		animation_tree["parameters/crouchblock/playback"].travel("crouch_block")
+
+
+func _on_input_controller_down_forward():
+	if is_on_floor() and not (backdash or run):
+		velocity.x = 0
+		crouch = true
+		idle = false
+		blocking = false
+		reset_values()
+		state_machine.travel("crouch")
+		animation_tree["parameters/crouch/playback"].travel("crouch")
+
 
 func _on_input_controller_up():
 	if is_on_floor() and not attack:
@@ -182,6 +204,7 @@ func _on_input_controller_normal_6m():
 	if is_on_floor() and idle:
 		#animation_tree["parameters/conditions/attack"] = true
 		attack = true
+		walk_forward = false
 		state_machine.travel("6M")
 	else:
 		pass
@@ -251,7 +274,8 @@ func _ready():
 	set_name("Xeaus" + str(playernumber))
 	input_controller.playernumber = playernumber
 	parent.healthui.connect_signals(self)
-	set_full_health.emit(stats.full_health, playernumber)
+	set_full_health.emit(fullhealth, playernumber)
+	stats.set_full_health(fullhealth)
 
 # Physics process
 func _physics_process(delta):
@@ -309,7 +333,7 @@ func reset_values():
 	
 	animation_tree["parameters/conditions/walk_backward"] = walk_backward
 	animation_tree["parameters/conditions/walk_forward"] = walk_forward
-	animation_tree["parameters/conditions/crouch"] = crouch
+	animation_tree["parameters/conditions/crouch"] = crouch and not blocking
 	animation_tree["parameters/conditions/crouchblock"] = crouch and blocking
 	animation_tree["parameters/conditions/run"] = run
 	animation_tree["parameters/conditions/backdash"] = backdash
@@ -365,6 +389,8 @@ func _on_hurtbox_area_entered(area):
 					combo_damage += damage_taken
 					
 					var hit_effect = light_hit.instantiate()
+					parent.effects.append(hit_effect)
+					hit_effect.world = parent
 					hit_effect.position.x = (self.global_position.x + hitbox.global_position.x) / 1.85
 					hit_effect.position.y = hitbox.global_position.y
 					#hit_effect.position = area.global_position

@@ -1,9 +1,9 @@
 res://Characters/Universal/input_controller.tscn::93cefee491f6ad47f96efe28087068e1::1698231146::res://.godot/exported/133200997/export-d11fa924dbe6c96d03ae517d2be0061c-input_controller.scn
-res://Characters/Xeaus/xeaus.tscn::7ac88fcfa9216cf63900b60cc2167c4d::1706106642::res://.godot/exported/133200997/export-12fd5e9d71f7271cc25c212e33c321f4-xeaus.scn
-res://Stages/test_stage.tscn::45456694c1feed15ed5f12ab1e64b242::1706106644::res://.godot/exported/133200997/export-319c7eda677d6d20fb433ad247b5f777-test_stage.scn
+res://Characters/Xeaus/xeaus.tscn::0d2e8bfaf4b52a74e2501e64b6911ad1::1706280331::res://.godot/exported/133200997/export-12fd5e9d71f7271cc25c212e33c321f4-xeaus.scn
+res://Stages/test_stage.tscn::45456694c1feed15ed5f12ab1e64b242::1706280334::res://.godot/exported/133200997/export-319c7eda677d6d20fb433ad247b5f777-test_stage.scn
 res://default_env.tres::756de160834ef7cc033c2a79cd80f338::1676601382::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
-res://UX/UIStages/character_select.tscn::812efea5950f543f9b26352d96086c0d::1706106643::res://.godot/exported/133200997/export-0d67aed990fce80c957d0e8c32b3989c-character_select.scn
-res://UX/UIStages/win_screen.tscn::32be87528dccd7a32be6f9c45801ad72::1706106643::res://.godot/exported/133200997/export-cc0f39490b3813400aa8446babee0dc1-win_screen.scn
-res://UX/health_ui.tscn::aa9a201bdbc1dec3479dceca093875c7::1706106643::res://.godot/exported/133200997/export-85c3fce357ab704f94488c99b045b7b3-health_ui.scn
-res://UX/HitEffects/light_hit.tscn::bfd1a6d8b3fdc2c4fad6088afb851b0b::1706106644::res://.godot/exported/133200997/export-5107140cd513332470b0cc7152be0b13-light_hit.scn
-res://global.tscn::44eba3b90e0face28756653ee1d38890::1706106644::res://.godot/exported/133200997/export-cf8532bc06c1243e731119a1dc90fa78-global.scn
+res://UX/UIStages/character_select.tscn::812efea5950f543f9b26352d96086c0d::1706280332::res://.godot/exported/133200997/export-0d67aed990fce80c957d0e8c32b3989c-character_select.scn
+res://UX/UIStages/win_screen.tscn::32be87528dccd7a32be6f9c45801ad72::1706280332::res://.godot/exported/133200997/export-cc0f39490b3813400aa8446babee0dc1-win_screen.scn
+res://UX/health_ui.tscn::62d367841242186284e7a06dee4ee4da::1706280331::res://.godot/exported/133200997/export-85c3fce357ab704f94488c99b045b7b3-health_ui.scn
+res://UX/HitEffects/light_hit.tscn::bfd1a6d8b3fdc2c4fad6088afb851b0b::1706280333::res://.godot/exported/133200997/export-5107140cd513332470b0cc7152be0b13-light_hit.scn
+res://global.tscn::44eba3b90e0face28756653ee1d38890::1706280333::res://.godot/exported/133200997/export-cf8532bc06c1243e731119a1dc90fa78-global.scn

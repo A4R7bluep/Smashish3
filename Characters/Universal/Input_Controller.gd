@@ -44,6 +44,7 @@ signal UP_FORWARD
 signal UP_BACK
 signal DOWN
 signal DOWN_BACK
+signal DOWN_FORWARD
 signal FORWARD
 signal BACK
 signal DASH
@@ -203,18 +204,22 @@ func _process(delta):
 	#CurrentVector.x *= facing
 	
 	
-	if CurrentVector.y == 1 and CurrentVector.x == 1:
+	if CurrentVector.x == 1 and CurrentVector.y == 1:
 		emit_signal("UP_FORWARD")
-	if CurrentVector.y == 1 and CurrentVector.x == -1:
+	if CurrentVector.x == -1 and CurrentVector.y == 1:
 		emit_signal("UP_BACK")
-	if CurrentVector.x == 1:
+	if CurrentVector.x == 1 and CurrentVector.y == 0:
 		emit_signal("FORWARD")
-	if CurrentVector.x == -1:
+	if CurrentVector.x == -1 and CurrentVector.y == 0:
 		emit_signal("BACK")
-	if CurrentVector.y == 1:
+	if CurrentVector.x == 0 and CurrentVector.y == 1:
 		emit_signal("UP")
-	if CurrentVector.y == -1:
+	if CurrentVector.x == 0 and CurrentVector.y == -1:
 		emit_signal("DOWN")
+	if CurrentVector.x == -1 and CurrentVector.y == -1:
+		emit_signal("DOWN_BACK")
+	if CurrentVector.x == 1 and CurrentVector.y == -1:
+		emit_signal("DOWN_FORWARD")
 	
 	if Char_Light and not Char_Dash:
 		inputBuffer.append("L")

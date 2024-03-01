@@ -22,6 +22,8 @@ var area2
 var cameralock = false
 var readycounter = 0
 
+var effects = []
+
 
 func add_xeaus(playernumber):
 	match playernumber:
@@ -50,6 +52,7 @@ func _ready():
 	add_characters()
 	healthui.set_rounds()
 
+
 func add_characters():
 	match char1name:
 		"Xeaus":
@@ -77,9 +80,11 @@ func _process(delta):
 			if char2.is_on_floor():
 				char2.facing = 1
 		
-		
 		camera.position.x = (char1.position.x + char2.position.x) / 2
 		camera.position.y = ((char1.position.y + char2.position.y) / 2) - 100
+		
+		if effects.all(func(e): return e == null):
+			effects = []
 
 
 func return_other_player(playernumber):
@@ -89,19 +94,6 @@ func return_other_player(playernumber):
 		2:
 			return char1
 
-#func set_health_ui(health, playernumber):
-	#match playernumber:
-		#1:
-			#healthui.set_health_1(health)
-		#2:
-			#healthui.set_health_2(health)
-
-#func set_meter_ui(meter, playernumber):
-	#match playernumber:
-		#1:
-			#healthui.set_meter_1(meter)
-		#2:
-			#healthui.set_meter_2(meter)
 
 func round_end(playernumber):
 	global.roundwins += 1
@@ -111,6 +103,10 @@ func round_end(playernumber):
 		2:
 			global.char2wins += 1
 	
+	for effect in effects:
+		effect.queue_free()
+	
+	effects = []
 	healthui.set_rounds()
 	
 	if global.char1wins == 2 or global.char2wins == 2:
@@ -126,5 +122,3 @@ func round_end(playernumber):
 		cameralock = true
 		char1.queue_free()
 		char2.queue_free()
-		#get_tree().root.add_child(testStage)
-		#self.queue_free()
