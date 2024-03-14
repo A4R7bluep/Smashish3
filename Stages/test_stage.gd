@@ -23,6 +23,7 @@ var cameralock = false
 var readycounter = 0
 
 var effects = []
+var projectiles = []
 
 
 func add_xeaus(playernumber):
@@ -51,6 +52,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	add_characters()
 	healthui.set_rounds()
+	healthui.timer.timeout.connect(round_end.bind(0))
 
 
 func add_characters():
@@ -85,6 +87,8 @@ func _process(delta):
 		
 		if effects.all(func(e): return e == null):
 			effects = []
+		if projectiles.all(func(e): return e == null):
+			projectiles = []
 
 
 func return_other_player(playernumber):
@@ -98,6 +102,14 @@ func return_other_player(playernumber):
 func round_end(playernumber):
 	global.roundwins += 1
 	match playernumber:
+		0:
+			if char1.stats.health > char2.stats.health:
+				global.char1wins += 1
+			elif char1.stats.health < char2.stats.health:
+				global.char2wins += 1
+			else:
+				global.char1wins += 1
+				global.char2wins += 1
 		1:
 			global.char1wins += 1
 		2:

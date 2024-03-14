@@ -2,13 +2,9 @@ extends Control
 
 @onready var global = get_node("/root/Global")
 
-#@onready var health1 = $Player1Health
-#@onready var health2 = $Player2Health
-#@onready var meter1 = $Player1Meter
-#@onready var meter2 = $Player2Meter
-
-var maxhealth1;
-var maxhealth2;
+var maxhealth1
+var maxhealth2
+var maxtime = 120
 
 @onready var combo1 = $Player1Health/ComboHealth1
 @onready var health1 = $Player1Health/Health1
@@ -23,6 +19,10 @@ var maxhealth2;
 @onready var rounds2 = $Player2Rounds/RoundStocks2
 @onready var combo_player2 = $Player2Health/AnimationPlayer2
 @onready var combo_anim2 = combo_player2.get_animation("combo_finished")
+
+@onready var time_progress = $RoundTime/TimeProgress
+@onready var time_label = $RoundTime/TimeLabel
+@onready var timer = $Timer
 
 
 func connect_signals(character):
@@ -104,3 +104,16 @@ func reset():
 	health2.value = maxhealth2
 	combo2.value = maxhealth2
 	meter2.value = 0
+	
+	time_progress.value = 0
+	timer.start(maxtime)
+
+
+func _ready():
+	timer.start(maxtime)
+	time_progress.max_value = maxtime
+
+func _process(delta):
+	var timeLeft = timer.time_left
+	time_label.text = str(int(timeLeft))
+	time_progress.value = timeLeft

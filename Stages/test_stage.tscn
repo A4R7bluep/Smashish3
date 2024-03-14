@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8qr5h2xxbmfl"]
+[gd_scene load_steps=9 format=3 uid="uid://c8qr5h2xxbmfl"]
 
 [ext_resource type="Script" path="res://Stages/test_stage.gd" id="1_m701g"]
 [ext_resource type="Texture2D" uid="uid://bcyxig6r0twm1" path="res://Stages/Yggdrasil_Seed_29.png" id="2_ktn6i"]
 [ext_resource type="PackedScene" uid="uid://dsl1er40msvhu" path="res://UX/health_ui.tscn" id="2_tkt4m"]
 [ext_resource type="Script" path="res://Stages/StageItems/sideWalls.gd" id="3_05ii5"]
 [ext_resource type="Script" path="res://Stages/AttackAttr.gd" id="4_1hy2i"]
+[ext_resource type="AudioStream" uid="uid://cguo5t6kppyyn" path="res://UX/Music/SmellOfTheGame.mp3" id="6_4kiiq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k48u1"]
 size = Vector2(4148, 68)
@@ -13,6 +14,7 @@ size = Vector2(4148, 68)
 size = Vector2(37, 2334)
 
 [node name="TestStage" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_m701g")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
@@ -99,3 +101,7 @@ offset_top = -1080.0
 offset_right = -960.0
 offset_bottom = -1080.0
 grow_vertical = 0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_4kiiq")
+volume_db = -8.0

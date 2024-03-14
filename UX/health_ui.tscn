@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dsl1er40msvhu"]
+[gd_scene load_steps=29 format=3 uid="uid://dsl1er40msvhu"]
 
 [ext_resource type="Script" path="res://UX/health_ui.gd" id="1_lg7o5"]
 [ext_resource type="Texture2D" uid="uid://bkwv2f38fntfh" path="res://UX/HUDTextures/RoundStockFull.png" id="2_haehr"]
@@ -111,6 +111,31 @@ colors = PackedColorArray(0.2, 0.8, 1, 1, 0, 0.6, 0.8, 1)
 gradient = SubResource("Gradient_rrnvt")
 width = 400
 height = 40
+
+[sub_resource type="Gradient" id="Gradient_mt4qo"]
+offsets = PackedFloat32Array(0, 0.609865, 0.623318, 1)
+colors = PackedColorArray(0.176419, 0.176419, 0.176419, 1, 0.176471, 0.176471, 0.176471, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mla1e"]
+gradient = SubResource("Gradient_mt4qo")
+width = 120
+height = 120
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_yuurt"]
+offsets = PackedFloat32Array(0, 0.358744, 0.390135, 0.609865, 0.636771, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.87451, 0.87451, 0.87451, 0, 0.788235, 0.788235, 0.788235, 1, 0.788235, 0.788235, 0.788235, 1, 0.45098, 0.45098, 0.45098, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o11kx"]
+gradient = SubResource("Gradient_yuurt")
+width = 120
+height = 120
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ktj5t"]
+font_size = 48
 
 [node name="HealthUI" type="Control"]
 layout_mode = 3
@@ -231,3 +256,46 @@ max_value = 2.0
 texture_under = ExtResource("2_y05a7")
 texture_progress = ExtResource("2_haehr")
 metadata/_edit_lock_ = true
+
+[node name="RoundTime" type="Node2D" parent="."]
+position = Vector2(960, 100)
+metadata/_edit_lock_ = true
+
+[node name="TimeProgress" type="TextureProgressBar" parent="RoundTime"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+fill_mode = 5
+texture_under = SubResource("GradientTexture2D_mla1e")
+texture_progress = SubResource("GradientTexture2D_o11kx")
+metadata/_edit_lock_ = true
+
+[node name="TimeLabel" type="Label" parent="RoundTime"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "99"
+label_settings = SubResource("LabelSettings_ktj5t")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true

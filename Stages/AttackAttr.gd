@@ -35,5 +35,17 @@ const attack_lookup = {
 			"KnockbackX": 1000,
 			"KnockbackY": -500,
 		},
+		"XeausFireball": {
+			"AttackLvl": "effect",
+			"Damage": 0,
+			"KnockbackX": 0,
+			"KnockbackY": 0,
+		},
+		"XeausStainExplode": {
+			"AttackLvl": "light",
+			"Damage": 6,
+			"KnockbackX": 70,
+			"KnockbackY": -800,
+		},
 	},
 }

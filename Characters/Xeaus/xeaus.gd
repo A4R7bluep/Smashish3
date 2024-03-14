@@ -20,18 +20,17 @@ var wall_slide = false
 @onready var animation_tree = $AnimationTree
 @onready var character_coll = $Area2D
 @onready var stats = $StatController
+@onready var hurtbox_mgmt = $HurtboxManagement
 @onready var state_machine = animation_tree["parameters/playback"]
 @onready var global = get_node("/root/Global")
 var light_hit = preload("res://UX/HitEffects/light_hit.tscn")
+var demon_fire = preload("res://Characters/Xeaus/xeaus_fireball.tscn")
 
 @onready var parent = get_parent()
-@onready var attackAttr = $"../AttackAttr"
 
 # Damage Scaling
 @export var fullhealth = 300
-@export var combo_scaling = 0.125
-var combo_damage = 0
-var combo_hits = 0
+
 
 # States
 @export var walk_backward = false
@@ -48,6 +47,9 @@ var combo_hits = 0
 @export var gravity_lock = false
 
 var framelock = false
+var effects = {"Stain": false}
+var fireball
+var demonFire = false
 
 signal health_changed(damage, combo, playernumber)
 signal meter_changed(meterAdded, playernumber)
@@ -193,7 +195,26 @@ func _on_input_controller_m():
 
 
 func _on_input_controller_h():
-	pass # Replace with function body.
+	if !demonFire:
+		var myProjectile = demon_fire.instantiate()
+		parent.projectiles.append(myProjectile)
+		fireball = myProjectile
+		myProjectile.connect("dying", func (): demonFire = false)
+		myProjectile.summoner = self
+		myProjectile.facing = facing
+		myProjectile.set_name("XeausFireball" + str(len(parent.projectiles) - 1))
+		myProjectile.global_position.x = self.global_position.x + (100 * facing)
+		myProjectile.global_position.y = self.global_position.y - 100
+		myProjectile.tree_exiting.connect(demon_fire_dead)
+		parent.add_child(myProjectile)
+		demonFire = true
+	elif parent.return_other_player(playernumber).effects["Stain"]:
+		parent.return_other_player(playernumber).get_node("StainEffect").explode()
+		demonFire = false
+		parent.return_other_player(playernumber).effects["Stain"] = false
+	elif fireball.done:
+		fireball.explode()
+		demonFire = false
 
 
 func _on_input_controller_normal_2m():
@@ -206,8 +227,6 @@ func _on_input_controller_normal_6m():
 		attack = true
 		walk_forward = false
 		state_machine.travel("6M")
-	else:
-		pass
 
 
 func _on_input_controller_normal_4m():
@@ -235,7 +254,15 @@ func _on_input_controller_qcfm():
 
 
 func _on_input_controller_qcfh():
-	pass # Replace with function body.
+	#var myProjectile = demon_fire.instantiate()
+	#parent.projectiles.append(myProjectile)
+	#myProjectile.summoner = self
+	#myProjectile.facing = facing
+	#myProjectile.set_name("XeausFireball" + str(len(parent.projectiles) - 1))
+	#myProjectile.global_position.x = self.global_position.x + (100 * facing)
+	#myProjectile.global_position.y = self.global_position.y
+	#parent.add_child(myProjectile)
+	pass
 
 
 func _on_input_controller_normal_4h():
@@ -276,6 +303,7 @@ func _ready():
 	parent.healthui.connect_signals(self)
 	set_full_health.emit(fullhealth, playernumber)
 	stats.set_full_health(fullhealth)
+	hurtbox_mgmt.parent = self
 
 # Physics process
 func _physics_process(delta):
@@ -342,75 +370,21 @@ func reset_values():
 	animation_tree["parameters/conditions/throw"] = throw
 	animation_tree["parameters/conditions/idle"] = idle
 	animation_tree["parameters/conditions/thrown"] = gravity_lock
-	
-	if is_on_floor() and combo_hits > 0:
-		combo_hits = 0
-		combo_damage = 0
-		combo_finished.emit(playernumber)
 
 
 func _on_hurtbox_area_entered(area):
-	var body = area.get_parent().get_parent()
-	# use find parent
-	if body != self:
-		var bodyName = body.get_name()
-		
-		if bodyName.begins_with("Xeaus"):
-			var values = attackAttr.attack_lookup["Xeaus"][area.name]
-			var combo_decay = min(values["Damage"] * combo_hits * combo_scaling, values["Damage"])
-			var damage_taken = values["Damage"] - combo_decay
-			var hitbox = area.get_node("CollisionShape2D")
-			
-			if values["AttackLvl"] == "throw":
-				gravity_lock = true
-				idle = false
-				state_machine.travel("thrown")
-				self.global_position = hitbox.global_position
-				velocity.x = values["KnockbackX"] * -facing
-				velocity.y = values["KnockbackY"]
-			elif values["AttackLvl"] == "backthrow":
-				var other_char = parent.return_other_player(playernumber)
-				var x = hitbox.global_position.x - other_char.global_position.x
-				global_position.x = -x
-				global_position.y = hitbox.global_position.y
-				
-				facing *= -facing
-				gravity_lock = true
-				idle = false
-				state_machine.travel("thrown")
-				self.global_position = hitbox.global_position
-				velocity.x = values["KnockbackX"] * -facing
-				velocity.y = values["KnockbackY"]
-				print("backthrow")
-			else:
-				if blocking:
-					print("blocked")
-				elif not damage_taken == 0:
-					combo_damage += damage_taken
-					
-					var hit_effect = light_hit.instantiate()
-					parent.effects.append(hit_effect)
-					hit_effect.world = parent
-					hit_effect.position.x = (self.global_position.x + hitbox.global_position.x) / 1.85
-					hit_effect.position.y = hitbox.global_position.y
-					#hit_effect.position = area.global_position
-					parent.add_child(hit_effect)
-					
-					stats.set_health(damage_taken, playernumber)
-					stats.set_meter(100, playernumber)
-					health_changed.emit(damage_taken, combo_damage, playernumber)
-					meter_changed.emit(5, playernumber)
-					velocity.x = values["KnockbackX"] * -facing
-					velocity.y = values["KnockbackY"]
-				
-		combo_hits += 1
-
+	hurtbox_mgmt.hit(area)
 
 func _on_hitbox_body_entered(body):
 	pass
 
 func _on_stat_controller_lost_round(playernumber):
 	queue_free()
+
+func demon_fire_dead():
+	#demonFire = false
+	pass
+
 
 func test(state):
 	#if get_name() == "Xeaus1":

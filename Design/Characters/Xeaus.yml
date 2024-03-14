@@ -128,7 +128,7 @@ Moves:
         Use: 6p, anti air
 
     Bat Dash:
-        Input: 26L, 26M, 26H
+        Input: 426L, 426M, 426H
         Use: Mix-up, approach
 
         Light: goes the least far, designed to go right in front of opponent - cancelable into other moves
@@ -141,7 +141,7 @@ Moves:
         Use: Spacing
 
     Demonic Fire:
-        Input: 623H
+        Input: 26H
         Description: Snaps to summon a ball of purple fire
             When it hits opponent, it sets them on fire but no damage
             When the move is inputted again the opponent explodes, another snap

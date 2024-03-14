@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://dh20ej0nxgvkp"]
+[gd_scene load_steps=110 format=3 uid="uid://dh20ej0nxgvkp"]
 
 [ext_resource type="Script" path="res://Characters/Xeaus/xeaus.gd" id="1_y5pna"]
 [ext_resource type="Texture2D" uid="uid://cbrco5nxer8cj" path="res://Characters/Xeaus/XeausPommelBunt.png" id="2_78q74"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c151xpltw2wey" path="res://Characters/Xeaus/XeausFallAnim.png" id="5_thtit"]
 [ext_resource type="Texture2D" uid="uid://dl8mf138wa8sl" path="res://Characters/Xeaus/XeausCrouchAnim.png" id="6_1rim1"]
 [ext_resource type="Texture2D" uid="uid://ce3ap1ogkptsd" path="res://Characters/Xeaus/XeausKnifeSlashMid.png" id="8_bcmpu"]
+[ext_resource type="PackedScene" uid="uid://3qh0b8eggvpd" path="res://Characters/Universal/hurtbox_management.tscn" id="10_oisnc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3l47t"]
 size = Vector2(130, 594)
@@ -1675,7 +1676,7 @@ texture = ExtResource("2_qxxpx")
 
 [node name="Hurtbox" type="Area2D" parent="facer"]
 visible = false
-collision_layer = 0
+collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="facer/Hurtbox"]
@@ -1774,6 +1775,8 @@ polygon = PackedVector2Array(70, 0, 0, 285, -70, 0, 0, -285)
 
 [node name="StatController" type="Node" parent="."]
 script = ExtResource("4_3tcwx")
+
+[node name="HurtboxManagement" parent="." instance=ExtResource("10_oisnc")]
 
 [connection signal="area_entered" from="facer/Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="facer/5L" to="." method="_on_hitbox_body_entered"]

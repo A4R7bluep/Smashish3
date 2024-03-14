@@ -33,49 +33,54 @@ func _process(_delta):
 	var CurrentVector1 = Vector2(Char_Right1 - Char_Left1, Char_Down1 - Char_Up1)
 	var CurrentVector2 = Vector2(Char_Right2 - Char_Left2, Char_Down2 - Char_Up2)
 	
-	var selected = [false, false, false, false, false, false, false, false]
+	var selected = [[false, false, false, false, false, false, false, false],
+			[false, false, false, false, false, false, false, false]]
 	
 	match CurrentVector1:
 			Vector2.UP:
-				selected[0] = true
+				selected[0][0] = true
 			Vector2.UP + Vector2.RIGHT:
-				selected[1] = true
+				selected[0][1] = true
 			Vector2.RIGHT:
-				selected[2] = true
+				selected[0][2] = true
 			Vector2.DOWN + Vector2.RIGHT:
-				selected[3] = true
+				selected[0][3] = true
 			Vector2.DOWN:
-				selected[4] = true
+				selected[0][4] = true
 			Vector2.DOWN + Vector2.LEFT:
-				selected[5] = true
+				selected[0][5] = true
 			Vector2.LEFT:
-				selected[6] = true
+				selected[0][6] = true
 			Vector2.UP + Vector2.LEFT:
-				selected[7] = true
+				selected[0][7] = true
 	
 	match CurrentVector2:
 			Vector2.UP:
-				selected[0] = true
+				selected[1][0] = true
 			Vector2.UP + Vector2.RIGHT:
-				selected[1] = true
+				selected[1][1] = true
 			Vector2.RIGHT:
-				selected[2] = true
+				selected[1][2] = true
 			Vector2.DOWN + Vector2.RIGHT:
-				selected[3] = true
+				selected[1][3] = true
 			Vector2.DOWN:
-				selected[4] = true
+				selected[1][4] = true
 			Vector2.DOWN + Vector2.LEFT:
-				selected[5] = true
+				selected[1][5] = true
 			Vector2.LEFT:
-				selected[6] = true
+				selected[1][6] = true
 			Vector2.UP + Vector2.LEFT:
-				selected[7] = true
+				selected[1][7] = true
 	
 	for i in range(len(sprites)):
-		if selected[i]:
-			sprites[i].texture = load("res://icon.png")
-		else:
-			sprites[i].texture = load("res://UX/CharSelTest.png")
+		if selected[0][i] and selected[1][i]:
+			sprites[0][i].texture = load("res://UX/HealthBar.png")
+			
+		elif selected[0][i] and !selected[1][i]:
+			sprites[0][i].texture = load("res://UX/CharSelTest.png")
+		
+		elif !selected[0][i] and selected[1][i]:
+			sprites[0][i].texture = load("res://icon.png")
 	
 	if Char_Light1:
 		match CurrentVector1:
