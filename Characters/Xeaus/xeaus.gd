@@ -29,7 +29,7 @@ var demon_fire = preload("res://Characters/Xeaus/xeaus_fireball.tscn")
 @onready var parent = get_parent()
 
 # Damage Scaling
-@export var fullhealth = 300
+@export var fullhealth = 100
 
 
 # States
@@ -195,26 +195,27 @@ func _on_input_controller_m():
 
 
 func _on_input_controller_h():
-	if !demonFire:
-		var myProjectile = demon_fire.instantiate()
-		parent.projectiles.append(myProjectile)
-		fireball = myProjectile
-		myProjectile.connect("dying", func (): demonFire = false)
-		myProjectile.summoner = self
-		myProjectile.facing = facing
-		myProjectile.set_name("XeausFireball" + str(len(parent.projectiles) - 1))
-		myProjectile.global_position.x = self.global_position.x + (100 * facing)
-		myProjectile.global_position.y = self.global_position.y - 100
-		myProjectile.tree_exiting.connect(demon_fire_dead)
-		parent.add_child(myProjectile)
-		demonFire = true
-	elif parent.return_other_player(playernumber).effects["Stain"]:
-		parent.return_other_player(playernumber).get_node("StainEffect").explode()
-		demonFire = false
-		parent.return_other_player(playernumber).effects["Stain"] = false
-	elif fireball.done:
-		fireball.explode()
-		demonFire = false
+	#if !demonFire:
+		#var myProjectile = demon_fire.instantiate()
+		#parent.projectiles.append(myProjectile)
+		#fireball = myProjectile
+		#myProjectile.connect("dying", func (): demonFire = false)
+		#myProjectile.summoner = self
+		#myProjectile.facing = facing
+		#myProjectile.set_name("XeausFireball" + str(len(parent.projectiles) - 1))
+		#myProjectile.global_position.x = self.global_position.x + (100 * facing)
+		#myProjectile.global_position.y = self.global_position.y - 100
+		#myProjectile.tree_exiting.connect(demon_fire_dead)
+		#parent.add_child(myProjectile)
+		#demonFire = true
+	#elif parent.return_other_player(playernumber).effects["Stain"]:
+		#parent.return_other_player(playernumber).get_node("StainEffect").explode()
+		#demonFire = false
+		#parent.return_other_player(playernumber).effects["Stain"] = false
+	#elif fireball.done:
+		#fireball.explode()
+		#demonFire = false
+	pass
 
 
 func _on_input_controller_normal_2m():
@@ -254,15 +255,26 @@ func _on_input_controller_qcfm():
 
 
 func _on_input_controller_qcfh():
-	#var myProjectile = demon_fire.instantiate()
-	#parent.projectiles.append(myProjectile)
-	#myProjectile.summoner = self
-	#myProjectile.facing = facing
-	#myProjectile.set_name("XeausFireball" + str(len(parent.projectiles) - 1))
-	#myProjectile.global_position.x = self.global_position.x + (100 * facing)
-	#myProjectile.global_position.y = self.global_position.y
-	#parent.add_child(myProjectile)
-	pass
+	if !demonFire:
+		var myProjectile = demon_fire.instantiate()
+		parent.projectiles.append(myProjectile)
+		fireball = myProjectile
+		myProjectile.connect("dying", func (): demonFire = false)
+		myProjectile.summoner = self
+		myProjectile.facing = facing
+		myProjectile.set_name("XeausFireball" + str(len(parent.projectiles) - 1))
+		myProjectile.global_position.x = self.global_position.x + (100 * facing)
+		myProjectile.global_position.y = self.global_position.y - 100
+		myProjectile.tree_exiting.connect(demon_fire_dead)
+		parent.add_child(myProjectile)
+		demonFire = true
+	elif parent.return_other_player(playernumber).effects["Stain"]:
+		parent.return_other_player(playernumber).get_node("StainEffect").explode()
+		demonFire = false
+		parent.return_other_player(playernumber).effects["Stain"] = false
+	elif fireball.done:
+		fireball.explode()
+		demonFire = false
 
 
 func _on_input_controller_normal_4h():

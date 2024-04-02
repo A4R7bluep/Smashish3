@@ -1,13 +1,13 @@
-extends Node2D
+extends Control
 
-@onready var spriteUp = $up
-@onready var spriteUpRight = $up_right
-@onready var spriteRight = $right
-@onready var spriteDownRight = $down_right
-@onready var spriteDown = $down
-@onready var spriteDownLeft = $down_left
-@onready var spriteLeft = $left
-@onready var spriteUpLeft = $up_left
+@onready var spriteUp = $up/select
+@onready var spriteUpRight = $up_right/select
+@onready var spriteRight = $right/select
+@onready var spriteDownRight = $down_right/select
+@onready var spriteDown = $down/select
+@onready var spriteDownLeft = $down_left/select
+@onready var spriteLeft = $left/select
+@onready var spriteUpLeft = $up_left/select
 
 @onready var sprites = [spriteUp, spriteUpRight, spriteRight, spriteDownRight,
 				spriteDown, spriteDownLeft, spriteLeft, spriteUpLeft]
@@ -16,6 +16,11 @@ var stage = preload("res://Stages/test_stage.tscn").instantiate()
 
 var done1 = false
 var done2 = false
+
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
 
 func _process(_delta):
 	var Char_Right1 = Input.get_action_strength("Char_Right1")
@@ -33,59 +38,64 @@ func _process(_delta):
 	var CurrentVector1 = Vector2(Char_Right1 - Char_Left1, Char_Down1 - Char_Up1)
 	var CurrentVector2 = Vector2(Char_Right2 - Char_Left2, Char_Down2 - Char_Up2)
 	
-	var selected = [[false, false, false, false, false, false, false, false],
-			[false, false, false, false, false, false, false, false]]
+	var selectedP1 = [false, false, false, false, false, false, false, false]
+	var selectedP2 = [false, false, false, false, false, false, false, false]
 	
-	match CurrentVector1:
+	if !done1:
+		match CurrentVector1:
 			Vector2.UP:
-				selected[0][0] = true
+				selectedP1[0] = true
 			Vector2.UP + Vector2.RIGHT:
-				selected[0][1] = true
+				selectedP1[1] = true
 			Vector2.RIGHT:
-				selected[0][2] = true
+				selectedP1[2] = true
 			Vector2.DOWN + Vector2.RIGHT:
-				selected[0][3] = true
+				selectedP1[3] = true
 			Vector2.DOWN:
-				selected[0][4] = true
+				selectedP1[4] = true
 			Vector2.DOWN + Vector2.LEFT:
-				selected[0][5] = true
+				selectedP1[5] = true
 			Vector2.LEFT:
-				selected[0][6] = true
+				selectedP1[6] = true
 			Vector2.UP + Vector2.LEFT:
-				selected[0][7] = true
+				selectedP1[7] = true
 	
-	match CurrentVector2:
+	if !done2:
+		match CurrentVector2:
 			Vector2.UP:
-				selected[1][0] = true
+				selectedP2[0] = true
 			Vector2.UP + Vector2.RIGHT:
-				selected[1][1] = true
+				selectedP2[1] = true
 			Vector2.RIGHT:
-				selected[1][2] = true
+				selectedP2[2] = true
 			Vector2.DOWN + Vector2.RIGHT:
-				selected[1][3] = true
+				selectedP2[3] = true
 			Vector2.DOWN:
-				selected[1][4] = true
+				selectedP2[4] = true
 			Vector2.DOWN + Vector2.LEFT:
-				selected[1][5] = true
+				selectedP2[5] = true
 			Vector2.LEFT:
-				selected[1][6] = true
+				selectedP2[6] = true
 			Vector2.UP + Vector2.LEFT:
-				selected[1][7] = true
+				selectedP2[7] = true
 	
 	for i in range(len(sprites)):
-		if selected[0][i] and selected[1][i]:
-			sprites[0][i].texture = load("res://UX/HealthBar.png")
+		if selectedP1[i] and selectedP2[i]:
+			sprites[i].texture = load("res://UX/CharacterSel/Player1n2Border.png")
 			
-		elif selected[0][i] and !selected[1][i]:
-			sprites[0][i].texture = load("res://UX/CharSelTest.png")
+		elif selectedP1[i] and !selectedP2[i]:
+			sprites[i].texture = load("res://UX/CharacterSel/Player1Border.png")
 		
-		elif !selected[0][i] and selected[1][i]:
-			sprites[0][i].texture = load("res://icon.png")
+		elif !selectedP1[i] and selectedP2[i]:
+			sprites[i].texture = load("res://UX/CharacterSel/player2border.png")
+		
+		elif !selectedP1[i] and !selectedP2[i]:
+			sprites[i].texture = load("res://UX/CharacterSel/BlankBorder.png")
 	
 	if Char_Light1:
 		match CurrentVector1:
 			Vector2.UP:
-				stage.char1 = "Xeaus"
+				stage.char1name = "Xeaus"
 				done1 = true
 			Vector2.UP + Vector2.RIGHT:
 				pass
@@ -105,7 +115,7 @@ func _process(_delta):
 	if Char_Light2:
 		match CurrentVector2:
 			Vector2.UP:
-				stage.char2 = "Xeaus"
+				stage.char2name = "Xeaus"
 				done2 = true
 			Vector2.UP + Vector2.RIGHT:
 				pass

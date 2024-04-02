@@ -4,7 +4,7 @@ extends Node2D
 
 @onready var camera = $Camera2D
 @onready var attackAttr = $AttackAttr
-@onready var healthui = $"CanvasLayer/HealthUI"
+@onready var healthui = $CanvasLayer/HealthUI
 @onready var canvas_layer = $CanvasLayer
 
 @onready var XeausScene = preload("res://Characters/Xeaus/xeaus.tscn")
@@ -24,6 +24,15 @@ var readycounter = 0
 
 var effects = []
 var projectiles = []
+
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	add_characters()
+	healthui.set_rounds()
+	healthui.timer.timeout.connect(round_end.bind(0))
+	
+	healthui.set_portraits(char1name, char2name)
 
 
 func add_xeaus(playernumber):
@@ -46,22 +55,6 @@ func add_xeaus(playernumber):
 			area2 = char2.character_coll
 	
 	cameralock = false
-
-
-func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	add_characters()
-	healthui.set_rounds()
-	healthui.timer.timeout.connect(round_end.bind(0))
-
-
-func add_characters():
-	match char1name:
-		"Xeaus":
-			add_xeaus(1)
-	match char2name:
-		"Xeaus":
-			add_xeaus(2)
 
 
 func _process(delta):
@@ -91,6 +84,15 @@ func _process(delta):
 			projectiles = []
 
 
+func add_characters():
+	match char1name:
+		"Xeaus":
+			add_xeaus(1)
+	match char2name:
+		"Xeaus":
+			add_xeaus(2)
+
+
 func return_other_player(playernumber):
 	match playernumber:
 		1:
@@ -111,12 +113,13 @@ func round_end(playernumber):
 				global.char1wins += 1
 				global.char2wins += 1
 		1:
-			global.char1wins += 1
-		2:
 			global.char2wins += 1
+		2:
+			global.char1wins += 1
 	
 	for effect in effects:
-		effect.queue_free()
+		if !effect == null:
+			effect.queue_free()
 	
 	effects = []
 	healthui.set_rounds()

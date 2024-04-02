@@ -1,0 +1,7 @@
+get_connected_joypads() - returns device IDs
+
+add_joy_mapping(mapping, update_existing) - add mapping
+
+remove_joy_mapping(GUID) - remove mapping
+
+is_joy_button_pressed(deviceID, button) - checks if button pressed on specified device

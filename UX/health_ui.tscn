@@ -1,15 +1,16 @@
-[gd_scene load_steps=29 format=3 uid="uid://dsl1er40msvhu"]
+[gd_scene load_steps=30 format=3 uid="uid://dsl1er40msvhu"]
 
 [ext_resource type="Script" path="res://UX/health_ui.gd" id="1_lg7o5"]
 [ext_resource type="Texture2D" uid="uid://bkwv2f38fntfh" path="res://UX/HUDTextures/RoundStockFull.png" id="2_haehr"]
 [ext_resource type="Texture2D" uid="uid://dksgx7efjtue2" path="res://UX/HUDTextures/RoundStockEmpty.png" id="2_y05a7"]
+[ext_resource type="Texture2D" uid="uid://dkwtxvgul2acj" path="res://UX/CharSelTest.png" id="4_rc8uh"]
 
 [sub_resource type="Gradient" id="Gradient_acd4a"]
 colors = PackedColorArray(0.533333, 0.533333, 0.533333, 1, 0.533333, 0.533333, 0.533333, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bn182"]
 gradient = SubResource("Gradient_acd4a")
-width = 700
+width = 550
 height = 40
 
 [sub_resource type="Gradient" id="Gradient_1m4e8"]
@@ -17,7 +18,7 @@ colors = PackedColorArray(0.454902, 0.145098, 0.145098, 1, 0.301961, 0.0980392, 
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tnpfm"]
 gradient = SubResource("Gradient_1m4e8")
-width = 700
+width = 550
 height = 40
 
 [sub_resource type="Gradient" id="Gradient_jbucm"]
@@ -25,7 +26,7 @@ colors = PackedColorArray(0.188235, 0.188235, 0.611765, 1, 0.117647, 0.117647, 0
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oy2rv"]
 gradient = SubResource("Gradient_jbucm")
-width = 700
+width = 550
 height = 40
 
 [sub_resource type="Animation" id="Animation_4gr0w"]
@@ -59,7 +60,7 @@ colors = PackedColorArray(0.533333, 0.533333, 0.533333, 1, 0.533333, 0.533333, 0
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_c0kdv"]
 gradient = SubResource("Gradient_nuawm")
-width = 700
+width = 550
 height = 40
 
 [sub_resource type="Gradient" id="Gradient_yjyh4"]
@@ -67,7 +68,7 @@ colors = PackedColorArray(0.454902, 0.145098, 0.145098, 1, 0.301961, 0.0980392, 
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_icaju"]
 gradient = SubResource("Gradient_yjyh4")
-width = 700
+width = 550
 height = 40
 
 [sub_resource type="Gradient" id="Gradient_b6v83"]
@@ -75,7 +76,7 @@ colors = PackedColorArray(0.188235, 0.188235, 0.611765, 1, 0.117647, 0.117647, 0
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_cty1v"]
 gradient = SubResource("Gradient_b6v83")
-width = 700
+width = 550
 height = 40
 
 [sub_resource type="Animation" id="Animation_uhbe5"]
@@ -148,7 +149,7 @@ script = ExtResource("1_lg7o5")
 metadata/_edit_lock_ = true
 
 [node name="Player1Health" type="Node2D" parent="."]
-position = Vector2(140, 64)
+position = Vector2(290, 64)
 metadata/_edit_lock_ = true
 
 [node name="ComboHealth1" type="TextureProgressBar" parent="Player1Health"]
@@ -178,7 +179,7 @@ libraries = {
 }
 
 [node name="Player2Health" type="Node2D" parent="."]
-position = Vector2(1770, 64)
+position = Vector2(1620, 64)
 scale = Vector2(-1, 1)
 metadata/_edit_lock_ = true
 
@@ -299,3 +300,12 @@ metadata/_edit_lock_ = true
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="Portrait2" type="Sprite2D" parent="."]
+position = Vector2(1770, 130)
+scale = Vector2(-1, 1)
+texture = ExtResource("4_rc8uh")
+
+[node name="Portrait1" type="Sprite2D" parent="."]
+position = Vector2(150, 130)
+texture = ExtResource("4_rc8uh")

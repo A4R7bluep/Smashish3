@@ -49,7 +49,7 @@ signal FORWARD
 signal BACK
 signal DASH
 
-var inputTimeDefault = 0.5
+var inputTimeDefault = 0.05
 var inputTime = inputTimeDefault
 var inputBuffer = []
 

@@ -25,13 +25,13 @@ const attack_lookup = {
 		},
 		"ForwardThrow": {
 			"AttackLvl": "throw",
-			"Damage": 0,
+			"Damage": 10,
 			"KnockbackX": 1000,
 			"KnockbackY": -500,
 		},
 		"BackThrow": {
 			"AttackLvl": "backthrow",
-			"Damage": 0,
+			"Damage": 10,
 			"KnockbackX": 1000,
 			"KnockbackY": -500,
 		},

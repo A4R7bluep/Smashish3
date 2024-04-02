@@ -7,9 +7,5 @@ res://UX/HitEffects/light_hit.tscn
 res://global.tscn
 res://Stages/test_stage.tscn
 res://Characters/Xeaus/xeaus_fireball.tscn
-res://Characters/Xeaus/xeaus.gd
-res://Characters/Universal/HurtboxManagement.gd
 res://Characters/Universal/hurtbox_management.tscn
-res://Characters/Xeaus/xeaus_fireball.gd
-res://Stages/test_stage.gd
-res://UX/UIStages/character_select.gd
+res://Characters/Universal/Input_Controller.gd

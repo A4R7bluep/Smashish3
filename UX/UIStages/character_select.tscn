@@ -1,39 +1,86 @@
-[gd_scene load_steps=3 format=3 uid="uid://f5f1j7xa65j7"]
+[gd_scene load_steps=5 format=3 uid="uid://f5f1j7xa65j7"]
 
 [ext_resource type="Script" path="res://UX/UIStages/character_select.gd" id="1_hvbh8"]
+[ext_resource type="Texture2D" uid="uid://d4k0f5e2hiltq" path="res://UX/XeausPortrait.png" id="3_3ct2y"]
 [ext_resource type="Texture2D" uid="uid://dkwtxvgul2acj" path="res://UX/CharSelTest.png" id="3_tnxm6"]
 
-[node name="CharacterSelect" type="Node2D"]
+[sub_resource type="LabelSettings" id="LabelSettings_shkr0"]
+font_size = 65
+
+[node name="CharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_hvbh8")
 
-[node name="up" type="Sprite2D" parent="."]
+[node name="up" type="Node2D" parent="."]
 position = Vector2(960, 140)
-texture = ExtResource("3_tnxm6")
 
-[node name="up_right" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="up"]
+texture = ExtResource("3_3ct2y")
+
+[node name="select" type="Sprite2D" parent="up"]
+
+[node name="up_right" type="Node2D" parent="."]
 position = Vector2(1243, 257)
+
+[node name="Sprite2D" type="Sprite2D" parent="up_right"]
 texture = ExtResource("3_tnxm6")
 
-[node name="right" type="Sprite2D" parent="."]
+[node name="select" type="Sprite2D" parent="up_right"]
+
+[node name="right" type="Node2D" parent="."]
 position = Vector2(1360, 540)
+
+[node name="Sprite2D" type="Sprite2D" parent="right"]
 texture = ExtResource("3_tnxm6")
 
-[node name="down_right" type="Sprite2D" parent="."]
+[node name="select" type="Sprite2D" parent="right"]
+
+[node name="down_right" type="Node2D" parent="."]
 position = Vector2(1243, 823)
+
+[node name="Sprite2D" type="Sprite2D" parent="down_right"]
 texture = ExtResource("3_tnxm6")
 
-[node name="down" type="Sprite2D" parent="."]
+[node name="select" type="Sprite2D" parent="down_right"]
+
+[node name="down" type="Node2D" parent="."]
 position = Vector2(960, 940)
+
+[node name="Sprite2D" type="Sprite2D" parent="down"]
 texture = ExtResource("3_tnxm6")
 
-[node name="down_left" type="Sprite2D" parent="."]
+[node name="select" type="Sprite2D" parent="down"]
+
+[node name="down_left" type="Node2D" parent="."]
 position = Vector2(677, 823)
+
+[node name="Sprite2D" type="Sprite2D" parent="down_left"]
 texture = ExtResource("3_tnxm6")
 
-[node name="left" type="Sprite2D" parent="."]
+[node name="select" type="Sprite2D" parent="down_left"]
+
+[node name="left" type="Node2D" parent="."]
 position = Vector2(560, 540)
+
+[node name="Sprite2D" type="Sprite2D" parent="left"]
 texture = ExtResource("3_tnxm6")
 
-[node name="up_left" type="Sprite2D" parent="."]
+[node name="select" type="Sprite2D" parent="left"]
+
+[node name="up_left" type="Node2D" parent="."]
 position = Vector2(677, 257)
+
+[node name="Sprite2D" type="Sprite2D" parent="up_left"]
 texture = ExtResource("3_tnxm6")
+
+[node name="select" type="Sprite2D" parent="up_left"]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 495.0
+offset_right = 1216.0
+offset_bottom = 585.0
+text = "Character Select"
+label_settings = SubResource("LabelSettings_shkr0")

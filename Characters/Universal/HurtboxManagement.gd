@@ -38,9 +38,15 @@ func hit(area):
 				parent.gravity_lock = true
 				parent.idle = false
 				parent.state_machine.travel("thrown")
-				self.global_position = hitbox.global_position
+				parent.global_position = hitbox.global_position
+				
+				parent.stats.set_health(damage_taken, parent.playernumber)
+				parent.stats.set_meter(100, parent.playernumber)
+				parent.health_changed.emit(damage_taken, combo_damage, parent.playernumber)
+				parent.meter_changed.emit(5, parent.playernumber)
 				parent.velocity.x = values["KnockbackX"] * -parent.facing
 				parent.velocity.y = values["KnockbackY"]
+			
 			elif values["AttackLvl"] == "backthrow":
 				var other_char = parent.parent.return_other_player(parent.playernumber)
 				var x = hitbox.global_position.x - other_char.global_position.x
@@ -51,10 +57,16 @@ func hit(area):
 				parent.gravity_lock = true
 				parent.idle = false
 				parent.state_machine.travel("thrown")
-				self.global_position = hitbox.global_position
+				parent.global_position = hitbox.global_position
+				
+				parent.stats.set_health(damage_taken, parent.playernumber)
+				parent.stats.set_meter(100, parent.playernumber)
+				parent.health_changed.emit(damage_taken, combo_damage, parent.playernumber)
+				parent.meter_changed.emit(5, parent.playernumber)
 				parent.velocity.x = values["KnockbackX"] * -parent.facing
 				parent.velocity.y = values["KnockbackY"]
 				print("backthrow")
+			
 			elif values["AttackLvl"] == "effect":
 				if body.summoner != self:
 					if area.name == "XeausFireball":
@@ -68,6 +80,7 @@ func hit(area):
 							myProjectile.set_name("StainEffect")
 							myProjectile.effect = true
 							parent.add_child(myProjectile)
+			
 			else:
 				if parent.blocking:
 					print("blocked")
@@ -76,7 +89,7 @@ func hit(area):
 					
 					var hit_effect = parent.light_hit.instantiate()
 					parent.parent.effects.append(hit_effect)
-					hit_effect.world = parent
+					hit_effect.world = parent.parent
 					hit_effect.position.x = (parent.global_position.x + hitbox.global_position.x) / 1.85
 					hit_effect.position.y = hitbox.global_position.y
 					parent.add_child(hit_effect)

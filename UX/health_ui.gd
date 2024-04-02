@@ -11,6 +11,7 @@ var maxtime = 120
 @onready var meter1 = $Player1Meter/Meter1
 @onready var rounds1 = $Player1Rounds/RoundStocks1
 @onready var combo_player1 = $Player1Health/AnimationPlayer1
+@onready var portrait1 = $Portrait1
 @onready var combo_anim1 = combo_player1.get_animation("combo_finished")
 
 @onready var combo2 = $Player2Health/ComboHealth2
@@ -18,6 +19,7 @@ var maxtime = 120
 @onready var meter2 = $Player2Meter/Meter2
 @onready var rounds2 = $Player2Rounds/RoundStocks2
 @onready var combo_player2 = $Player2Health/AnimationPlayer2
+@onready var portrait2 = $Portrait2
 @onready var combo_anim2 = combo_player2.get_animation("combo_finished")
 
 @onready var time_progress = $RoundTime/TimeProgress
@@ -107,6 +109,16 @@ func reset():
 	
 	time_progress.value = 0
 	timer.start(maxtime)
+
+
+func set_portraits(char1, char2):
+	match char1:
+		"Xeaus":
+			portrait1.texture = load("res://UX/XeausPortrait.png")
+	
+	match char2:
+		"Xeaus":
+			portrait2.texture = load("res://UX/XeausPortrait.png")
 
 
 func _ready():
