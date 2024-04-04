@@ -13,6 +13,7 @@ var rightTaken = false
 var charSel = preload("res://UX/UIStages/character_select.tscn").instantiate()
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	sprites[0].position.x = 960
 	sprites[0].position.y = 400
 	if len(controllerIDs) > 0:
@@ -27,7 +28,7 @@ func _ready():
 func _process(delta):
 	var left = -1
 	var right = -1
-
+	
 	for id in controllerIDs:
 		var axis = Input.get_joy_axis(id, JOY_AXIS_LEFT_X)
 		var dpadLeft = Input.is_joy_button_pressed(id, JOY_BUTTON_DPAD_LEFT)

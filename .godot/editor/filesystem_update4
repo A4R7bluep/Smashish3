@@ -1,12 +1,10 @@
-res://Characters/Xeaus/xeaus.tscn
+res://UX/System/DeviceIcon.tscn
 res://Characters/Xeaus/demonfire.gdshader
+res://UX/UIStages/controller_select.gd
+res://Characters/Xeaus/xeaus.tscn
 res://UX/health_ui.tscn
 res://UX/UIStages/character_select.tscn
 res://UX/HitEffects/light_hit.tscn
 res://Stages/test_stage.tscn
 res://Characters/Xeaus/xeaus_fireball.tscn
 res://UX/UIStages/controller_select.tscn
-res://UX/System/DeviceIcon.tscn
-res://UX/UIStages/controller_select.gd
-res://Characters/Universal/Input_Controller.gd
-res://Characters/Xeaus/xeaus.gd
