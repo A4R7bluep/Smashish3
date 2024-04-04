@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 var facing = 1 # 1 is on left, -1 is on right
-var playernumber;
+var playernumber
 
 # Movement Variables
 @export var WALK_SPEED = 300
@@ -312,6 +312,7 @@ func _on_input_controller_normal_4s():
 func _ready():
 	set_name("Xeaus" + str(playernumber))
 	input_controller.playernumber = playernumber
+	input_controller.bufferTimeSet()
 	parent.healthui.connect_signals(self)
 	set_full_health.emit(fullhealth, playernumber)
 	stats.set_full_health(fullhealth)

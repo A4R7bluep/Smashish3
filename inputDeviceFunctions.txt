@@ -1,7 +1,7 @@
 get_connected_joypads() - returns device IDs
 
-add_joy_mapping(mapping, update_existing) - add mapping
+InputMap.action_add_event(action: StringName, event: InputEvent) - adds event from action
 
-remove_joy_mapping(GUID) - remove mapping
+InputMap.action_erase_event(action: StringName, event: InputEvent) - removes event from action
 
-is_joy_button_pressed(deviceID, button) - checks if button pressed on specified device
+is_joy_button_pressed(device: int, button: JoyButton) - checks if button pressed on specified devicer

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://censipgnwsbmn"]
+
+[ext_resource type="Texture2D" uid="uid://dsnbyj4jovf5i" path="res://UX/System/user.svg" id="1_s7x4x"]
+
+[node name="Device" type="Sprite2D"]
+texture_filter = 1
+position = Vector2(-500, 0)
+scale = Vector2(10, 10)
+texture = ExtResource("1_s7x4x")

@@ -1,5 +1,7 @@
 extends Node
 
+@onready var global = get_node("/root/Global")
+
 signal L
 signal M
 signal H
@@ -49,11 +51,11 @@ signal FORWARD
 signal BACK
 signal DASH
 
-var inputTimeDefault = 0.05
-var inputTime = inputTimeDefault
-var inputBuffer = []
-
 var playernumber
+
+var inputTimeDefault
+var inputTime
+var inputBuffer = []
 
 var CurrentVector = Vector2.ZERO
 
@@ -124,6 +126,23 @@ var inputTree = {
 	"M": "M",
 	"H": "H",
 }
+
+
+func bufferTimeSet():
+	match playernumber:
+		1:
+			if global.p1CtrlID == 0:
+				inputTimeDefault = 0.05
+			else:
+				inputTimeDefault = 0.1
+			inputTime = inputTimeDefault
+		2:
+			if global.p2CtrlID == 0:
+				inputTimeDefault = 0.05
+			else:
+				inputTimeDefault = 0.1
+			inputTime = inputTimeDefault
+
 
 func navigate_tree(button):
 	var currentPath = inputTree

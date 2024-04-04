@@ -1,3 +1,56 @@
-[gd_scene format=3 uid="uid://bvd4pouacki0c"]
+[gd_scene load_steps=5 format=3 uid="uid://bvd4pouacki0c"]
 
-[node name="ControllerSelect" type="Node2D"]
+[ext_resource type="Script" path="res://UX/UIStages/controller_select.gd" id="1_8ksnl"]
+[ext_resource type="PackedScene" uid="uid://censipgnwsbmn" path="res://UX/System/DeviceIcon.tscn" id="2_plv07"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_py3hl"]
+font_size = 85
+
+[sub_resource type="LabelSettings" id="LabelSettings_nk008"]
+font_size = 65
+
+[node name="ControllerSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8ksnl")
+
+[node name="Header" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -167.5
+offset_right = 167.5
+offset_bottom = 90.0
+grow_horizontal = 2
+text = "Side Select"
+label_settings = SubResource("LabelSettings_py3hl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Left" type="Label" parent="."]
+layout_mode = 1
+offset_right = 600.0
+offset_bottom = 150.0
+text = "Player 1"
+label_settings = SubResource("LabelSettings_nk008")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Right" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -600.0
+offset_bottom = 150.0
+grow_horizontal = 0
+text = "Player 2"
+label_settings = SubResource("LabelSettings_nk008")
+vertical_alignment = 1
+
+[node name="Keyboard" parent="." instance=ExtResource("2_plv07")]
