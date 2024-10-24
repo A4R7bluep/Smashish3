@@ -1,0 +1,72 @@
+Name: Yurashi
+
+Description: female samurai with some Iaido/Iaijutsu techniques and a tether
+
+Character Feel: 
+
+Stats:
+    health: 00
+    power: 00
+    defense: 00
+    speed: 00
+
+Appearance:
+    
+
+Lore:
+    
+
+Character Traits:
+    
+
+Intro Quotes:
+    Character's Stage: |
+        
+
+    General: |
+        
+
+    Enemy?: |
+        
+
+Win Quotes:
+    Enemy?: |
+        
+
+    General: |
+        
+
+Stage: 
+
+Mechanics: 
+    
+
+
+Mechanic Overrides: |
+    
+
+Weakness: 
+
+Moves:
+    Grab: 
+
+    Pommel Bash:
+        Input: 5L
+        Use: fast, combo setup
+
+    Spiking Slash:
+        Input: jH
+        Description: 
+
+    Supers:
+        Super Press: 
+            
+
+        Super Execute:
+            - Launches opponent
+            - Allows player to input the direction Yurashi slashes
+            - Have the ability to write kanji
+            - Damage isn't applied until Yurashi puts the katana back in the scabbard
+            
+
+Inspiration: Iaido/Iaijutsu

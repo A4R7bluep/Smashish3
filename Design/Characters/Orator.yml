@@ -1,59 +1,5 @@
 Name: The Orator
 
-NEED TO RESEARCH:
-    Move names: Kabbalah sephira? as Attacks
-
-    Keter (Crown):
-        Angel: Metatron
-        Description: Metatron is often referred to as the "Youth" or the "Prince of the Countenance." 
-            He is considered a high-ranking angelic being and is associated with the divine light of Keter.
-    
-    Chokhmah (Wisdom):
-        Angel: Ratziel
-        Description: Ratziel is associated with the deep wisdom and insight of Chokhmah. 
-            He is often considered the archangel of divine secrets and esoteric knowledge.
-
-    Binah (Understanding):
-        Angel: Tzaphkiel
-        Description: Tzaphkiel is associated with Binah and is often seen as an angel of contemplation and understanding. 
-            The name Tzaphkiel means "Beholder of God."
-    
-    Da'at (Knowledge):
-        Description: All sefirot as one
-
-    Chesed (Loving-Kindness):
-        Angel: Tzadkiel
-        Description: Tzadkiel is associated with Chesed and represents benevolence, mercy, and loving-kindness. 
-            Tzadkiel is often invoked for matters related to compassion and forgiveness.
-
-    Gevurah (Severity or Judgment):
-        Angel: Khamael
-        Description: Khamael is associated with Gevurah and is often considered an angel of divine justice and severity. 
-            The name Khamael means "One who seeks God."
-    
-    Tiferet (Beauty):
-        Angel: Raphael
-        Description: Raphael is associated with Tiferet and represents harmony and healing. 
-            The name Raphael means "God heals," emphasizing the angel's role in physical and spiritual healing.
-    
-    Netzach (Eternity):
-        Angel: Haniel
-        Description: Haniel is associated with Netzach and is often seen as an angelic presence connected to divine grace, beauty, and the eternal.
-
-    Hod (Glory or Splendor):
-        Angel: Michael
-        Description: Michael is associated with Hod and is often considered a powerful archangel associated with strength, victory, and glory.
-    
-    Yesod (Foundation):
-        Angel: Gabriel
-        Description: Gabriel is associated with Yesod and is often seen as a messenger angel. 
-            Gabriel is known for delivering important messages and announcements.
-
-    Malkuth (Kingdom):
-        Angel: Sandalphon
-        Description: Sandalphon is associated with Malkuth and is often considered the angelic representative of the Earth. 
-            Sandalphon is sometimes depicted as an angelic musician.
-
 Description: 
     - Has an overdrive mode (Archangel mode), which enhances all attacks, but needs some of the fallen angel attacks
     - Fallen angel attacks decreases the angel type meter, which can lead to leaving the archangel mode, or worse, going into fallen angel mode
@@ -79,6 +25,7 @@ Intro Quotes:
 
 Win Quotes:
     General: |
+        *book falls* Oh, sorry, that wasn't me. It must have been Raziel.
 
 Stage:
 
@@ -89,17 +36,27 @@ Mechanic Overrides: |
 Moves:
     Grab: 
 
-    Sefirot:
+    Arch Angel Mode:
         Keter (Crown):
-            description: Uses the power of Keter to enter overdrive mode
+            description: Uses the power of Keter to enter archangel mode
             input:
         
         Chokhmah (Wisdom):
-            description: spellbook? need to think about
+            description: 
+                - a female figure appears and releases raw earth, water, and wind
+
+                - Earth: breaks the ground, creating a line on the ground with earth spikes, similar to avatar belial's qcf light - low
+                - Water: a raincloud is formed over part of the sky and rains - overhead
+                - Wind: a gust of wind pushes grounded opponents away
             input:
         
         Binah (Understanding):
-            description: spell modifiers?
+            description: 
+                - turns the raw elements of creation into refined projectiles
+
+                - Earth: 
+                - Water: 
+                - Wind: 
             input:
         
         Chesed (Loving-Kindness):
@@ -139,29 +96,29 @@ Moves:
                 - Guard breaks on block and staggers on hit for starting a combo
             input:
     
-    Qliphoth:
+    Fallen Angel Mode:
         Thaumiel (Moloch):
             description: purposely enters fallen angel mode
             input:
-        
+
         Ghagiel (Belial):
             description: 
             input:
-        
+
         Satariel (Lucifer):
             description: 
             input:
-        
+
         Gha'agsheblah (Astaroth):
             description: 
             input:
-        
+
         Golachab (Asmodeus):
             description:
                 - Covers an area on the ground with an effect that slowly drains health for anyone inside
                 - Effects both yourself and enemies
             input:
-        
+
         Thagirion (Belphegor):
             description: 
             input:
@@ -169,18 +126,19 @@ Moves:
         A'arab Zaraq (Baal):
             description: 
             input:
-        
+
         Samael (Adramelech):
             description: 
             input:
-        
+
         Ghamaliel (Lilith):
             description: Fiery bird stands on shoulder and breathes a multi-hitting fire, used for pressure
             input:
-        
+
         Nehemoth (Na'amah):
             description: 
             input:
+            
 
 
 Supers:

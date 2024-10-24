@@ -20,7 +20,6 @@ var area1
 var area2
 
 var cameralock = false
-var readycounter = 0
 
 var effects = []
 var projectiles = []

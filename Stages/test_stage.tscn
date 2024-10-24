@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dsl1er40msvhu" path="res://UX/health_ui.tscn" id="2_tkt4m"]
 [ext_resource type="Script" path="res://Stages/StageItems/sideWalls.gd" id="3_05ii5"]
 [ext_resource type="Script" path="res://Stages/AttackAttr.gd" id="4_1hy2i"]
-[ext_resource type="AudioStream" uid="uid://cguo5t6kppyyn" path="res://UX/Music/SmellOfTheGame.mp3" id="6_4kiiq"]
+[ext_resource type="AudioStream" uid="uid://5m07df243ukf" path="res://UX/Music/SoundOfNightOfWind.mp3" id="6_q3isc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k48u1"]
 size = Vector2(4148, 68)
@@ -103,7 +103,8 @@ offset_bottom = -1080.0
 grow_vertical = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_4kiiq")
+stream = ExtResource("6_q3isc")
 volume_db = -8.0
+autoplay = true
 mix_target = 1
 bus = &"BGM"

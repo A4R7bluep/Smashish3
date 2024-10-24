@@ -1,3 +1,10 @@
+# ====================================================================
+#
+# Note: when remaking, have the first person to press the start button 
+#    be player 1, then the next, player 2
+#
+# ====================================================================
+
 extends Control
 
 @onready var global = get_node("/root/Global")
@@ -18,7 +25,7 @@ func _ready():
 	sprites[0].position.y = 400
 	if len(controllerIDs) > 0:
 		for i in controllerIDs:
-			var sprite = preload("res://UX/System/DeviceIcon.tscn").instantiate()
+			var sprite = load("res://UX/System/DeviceIcon.tscn").instantiate()
 			sprite.name = "Device" + str(i + 1)
 			sprite.position.x = 960
 			sprite.position.y = 210 * (i + 3)
@@ -179,6 +186,12 @@ func _process(delta):
 	if right != -1:
 		sprites[right].position.x = 1460
 	
-	if Input.is_action_pressed("SELECT"):
+	if global.p1CtrlID != -1:
+		sprites[global.p1CtrlID].position.x = 460
+	if global.p2CtrlID != -1:
+		sprites[global.p2CtrlID].position.x = 1460
+	
+	if Input.is_action_pressed("SELECT") \
+		and global.p2CtrlID != -1 and global.p2CtrlID != -1:
 		get_tree().root.add_child(charSel)
 		self.queue_free()
